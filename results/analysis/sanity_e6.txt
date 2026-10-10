@@ -1,0 +1,17 @@
+=== 1. In-domain 2018 (train and test on 2018 sample) ===
+Benign      F1 0.999  (support 28111)
+DoS         F1 1.000  (support 29862)
+DDoS        F1 1.000  (support 30115)
+BruteForce  F1 1.000  (support 28312)
+WebAttack   F1 0.945  (support 95)
+Bot         F1 1.000  (support 30006)
+
+=== 2. Median shift 2018 vs 2017, in 2017-std units (after 2017 normalisation) ===
+Benign      |shift|>1: 18/80 features, >5:  0 | top: synflagcount(+1.9), packetlengthmin(-1.9), fwdpacketlengthmin(-1.9), fwdinitwinbytes(+1.9), bwdpacketlengthmin(-1.8)
+DoS         |shift|>1: 12/80 features, >5:  0 | top: bwdbulkrateavg(-2.9), fwdrstflags(-2.8), bwdbytesbulkavg(-2.7), rstflagcount(-2.7), bwdpacketbulkavg(-2.0)
+DDoS        |shift|>1: 31/80 features, >5:  2 | top: cwrflagcount(+42.1), eceflagcount(+32.7), subflowfwdbytes(+2.7), fwdpacketlengthmean(+2.6), fwdsegmentsizeavg(+2.6)
+BruteForce  |shift|>1: 26/80 features, >5:  1 | top: bwdrstflags(-7.5), rstflagcount(-2.7), subflowfwdbytes(+2.1), fwdpacketlengthmax(+2.0), downupratio(-1.9)
+WebAttack   |shift|>1:  4/80 features, >5:  2 | top: cwrflagcount(+42.1), eceflagcount(+32.7), fwdheaderlength(-4.6), bwdheaderlength(-1.4), downupratio(+0.8)
+Bot         |shift|>1:  2/80 features, >5:  2 | top: cwrflagcount(+42.1), eceflagcount(+32.7), bwdiatmin(-1.0), downupratio(+0.8), bwdpacketss(+0.7)
+
+Raw Benign flowduration median: 2017 93771.0 | 2018 273179.0 (a ~1000x gap would suggest a time-unit mismatch)

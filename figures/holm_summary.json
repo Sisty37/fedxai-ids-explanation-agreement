@@ -1,0 +1,7 @@
+{
+ "heterogeneity_cells_sig": 5,
+ "heterogeneity_cells_total": 30,
+ "alpha0.1_all_classes_sig": false,
+ "fedprox_fidelity_cells_sig": 24,
+ "fedprox_cells_total": 36
+}

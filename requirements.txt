@@ -1,0 +1,7 @@
+numpy>=1.26
+pandas>=2.1
+scipy>=1.11
+scikit-learn>=1.4
+pyyaml>=6
+pytest>=8
+# Week 2+: torch, shap, (optional) flwr

@@ -1,0 +1,19 @@
+=== F. Heterogeneity effect: EED vs fed alpha=100, minus fed100 seed baseline ===
+alpha         Benign          DoS         DDoS     PortScan    BruteForc          Bot
+5        0.007+-0.019 -0.006+-0.023  0.017+-0.026  0.001+-0.013  0.003+-0.021 -0.009+-0.019
+1        0.026+-0.024  0.025+-0.034  0.046+-0.056  0.032+-0.024  0.042+-0.031  0.061+-0.045
+0.5      0.050+-0.038  0.036+-0.037  0.099+-0.051  0.044+-0.027  0.072+-0.037  0.138+-0.072
+0.3      0.085+-0.044  0.093+-0.047  0.144+-0.061  0.095+-0.059  0.086+-0.052  0.159+-0.091
+0.1      0.281+-0.114  0.283+-0.045  0.320+-0.095  0.247+-0.080  0.206+-0.063  0.321+-0.056
+
+=== G. Factorized, alpha=1 (mean over seeds; n seeds with data) ===
+data         Benign:-0.004(n=10) DoS: 0.000(n=10) DDoS: 0.003(n=10) PortSc: 0.005(n=10) BruteF:-0.001(n=10) Bot: 0.045(n=10)
+model        Benign: 0.447(n=10) DoS: 0.555(n=10) DDoS: 0.694(n=10) PortSc: 0.755(n=10) BruteF: 0.557(n=10) Bot: 0.650(n=10)
+combined     Benign: 0.445(n=10) DoS: 0.561(n=10) DDoS: 0.692(n=10) PortSc: 0.740(n=10) BruteF: 0.555(n=10) Bot: 0.653(n=10)
+interaction  Benign: 0.003(n=10) DoS: 0.007(n=10) DDoS:-0.005(n=10) PortSc:-0.020(n=10) BruteF:-0.001(n=10) Bot:-0.041(n=10)
+
+=== G. Factorized, alpha=0.1 (mean over seeds; n seeds with data) ===
+data         Benign:-0.002(n=10) DoS: 0.009(n=10) DDoS: 0.005(n=10) PortSc: 0.010(n=10) BruteF: 0.002(n=10) Bot: 0.034(n=10)
+model        Benign: 0.585(n=10) DoS: 0.624(n=10) DDoS: 0.707(n=10) PortSc: 0.678(n=10) BruteF: 0.549(n=10) Bot: 0.625(n=10)
+combined     Benign: 0.589(n=10) DoS: 0.618(n=10) DDoS: 0.707(n=10) PortSc: 0.661(n=10) BruteF: 0.555(n=10) Bot: 0.636(n=10)
+interaction  Benign: 0.006(n=10) DoS:-0.015(n=10) DDoS:-0.005(n=10) PortSc:-0.026(n=10) BruteF: 0.004(n=10) Bot:-0.022(n=10)

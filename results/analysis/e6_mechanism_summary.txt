@@ -1,0 +1,19 @@
+=== A. Attribution share of CWR+ECE (2017 -> 2018), best ECN rank in 2018, shift-attribution rho ===
+[central]
+  DoS         share 0.000 -> 0.000 | best rank 76 | rho -0.282+-0.047 | top5 2018: [np.str_('bwdrstflags'), np.str_('fwdiatmin'), np.str_('bwdpacketlengthmin')]
+  DDoS        share 0.000 -> 0.884 | best rank 1 | rho -0.021+-0.049 | top5 2018: [np.str_('cwrflagcount'), np.str_('eceflagcount'), np.str_('bwdrstflags')]
+  BruteForce  share 0.000 -> 0.000 | best rank 76 | rho -0.408+-0.031 | top5 2018: [np.str_('fwdpshflags'), np.str_('bwdpshflags'), np.str_('actdatapktfwd')]
+  Bot         share 0.000 -> 0.881 | best rank 1 | rho +0.249+-0.036 | top5 2018: [np.str_('cwrflagcount'), np.str_('eceflagcount'), np.str_('bwdrstflags')]
+[fedavg_a100]
+  DoS         share 0.000 -> 0.000 | best rank 76 | rho -0.334+-0.021 | top5 2018: [np.str_('bwdrstflags'), np.str_('fwdiatmin'), np.str_('fwdpacketlengthstd')]
+  DDoS        share 0.000 -> 0.798 | best rank 1 | rho -0.093+-0.041 | top5 2018: [np.str_('cwrflagcount'), np.str_('eceflagcount'), np.str_('bwdrstflags')]
+  BruteForce  share 0.000 -> 0.000 | best rank 76 | rho -0.370+-0.018 | top5 2018: [np.str_('bwdpshflags'), np.str_('fwdpshflags'), np.str_('bwdrstflags')]
+  Bot         share 0.000 -> 0.800 | best rank 1 | rho +0.162+-0.027 | top5 2018: [np.str_('cwrflagcount'), np.str_('eceflagcount'), np.str_('fwdheaderlength')]
+
+=== B. 2018 per-family F1: full features | without CWR/ECE | paired diff ===
+2017 Test-B macro-F1: full 0.9662 | no-ECN 0.9687
+  Benign      0.326 | 0.347 | +0.021+-0.021
+  DoS         0.028 | 0.030 | +0.001+-0.007
+  DDoS        0.000 | 0.220 | +0.220+-0.080
+  BruteForce  0.144 | 0.023 | -0.121+-0.203
+  Bot         0.000 | 0.289 | +0.289+-0.284

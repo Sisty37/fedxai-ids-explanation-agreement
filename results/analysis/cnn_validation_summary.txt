@@ -1,0 +1,15 @@
+=== 1D-CNN validation (5 seeds) ===
+Detection macro-F1:
+  central       0.9609 +- 0.0245
+  fedavg_a100   0.8726 +- 0.0650
+  fedavg_a1     0.9282 +- 0.0398
+  fedavg_a0.1   0.5365 +- 0.1185
+  fedprox_a100  0.9179 +- 0.0297
+Seed baseline: Benign:0.530 DoS:0.649 DDoS:0.658 PortSc:0.599 BruteF:0.523 Bot:0.643
+FedAvg a=100 fidelity excess: Benign:0.099 DoS:-0.007 DDoS:-0.065 PortSc:0.108 BruteF:0.006 Bot:0.018
+Heterogeneity drift a=1: mean 0.043 +- 0.056
+Heterogeneity drift a=0.1: mean 0.108 +- 0.029
+Class mix a=1: D_vs_R 0.430, D_vs_mix 0.106, share 0.75
+Class mix a=0.1: D_vs_R 0.429, D_vs_mix 0.086, share 0.80
+Background effect a=1: Benign:0.225 DoS:0.680 DDoS:0.674 PortSc:0.431 BruteF:0.433 Bot:0.710
+FedProx - FedAvg fidelity a=100: Benign:+0.154 DoS:+0.043 DDoS:+0.009 PortSc:+0.010 BruteF:+0.112 Bot:+0.080

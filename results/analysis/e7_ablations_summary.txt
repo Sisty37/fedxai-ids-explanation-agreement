@@ -1,0 +1,15 @@
+=== 1. RBO vs 1-J*@10 agreement: Spearman 0.765 over 4680 pairs ===
+1-J*@10 fidelity (fed vs central) | central baseline:
+  a=100  Benign:0.58 DoS:0.48 DDoS:0.80 PortSc:0.52 BruteF:0.80 Bot:0.72
+  a=1    Benign:0.50 DoS:0.48 DDoS:0.79 PortSc:0.56 BruteF:0.79 Bot:0.75
+  a=0.1  Benign:0.63 DoS:0.72 DDoS:0.77 PortSc:0.66 BruteF:0.81 Bot:0.84
+  base   Benign:0.25 DoS:0.38 DDoS:0.45 PortSc:0.28 BruteF:0.50 Bot:0.40
+
+=== 2. Background ablation (mean EED) ===
+a=1: local vs shared bg (same samples): Benign:0.069 DoS:0.548 DDoS:0.640 PortSc:0.375 BruteF:0.300 Bot:0.639
+       client(local bg) vs R(shared bg):  Benign:0.089 DoS:0.555 DDoS:0.641 PortSc:0.388 BruteF:0.305 Bot:0.652
+a=0.1: local vs shared bg (same samples): Benign:0.100 DoS:0.541 DDoS:0.618 PortSc:0.381 BruteF:0.297 Bot:0.594
+       client(local bg) vs R(shared bg):  Benign:0.118 DoS:0.552 DDoS:0.624 PortSc:0.405 BruteF:0.300 Bot:0.593
+
+=== 3. KernelSHAP vs expected gradients ===
+overall Spearman 0.911; per class: Benign:0.78 DoS:0.71 DDoS:0.46 PortSc:0.36 BruteF:0.55 Bot:0.64

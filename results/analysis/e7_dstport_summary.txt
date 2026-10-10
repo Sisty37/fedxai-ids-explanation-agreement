@@ -1,0 +1,11 @@
+Rows after cleaning WITH port: 1,790,998 (duplicates removed: 225,166)
+PortScan rows with port: 90,613
+Macro-F1 main (no port): 0.9603+-0.0168 | with port: 0.9661+-0.0413
+Per-class F1 main | with port | Dst Port attribution share (median rank):
+  Benign      1.000 | 1.000 | 0.069 (rank 1)
+  DoS         1.000 | 1.000 | 0.092 (rank 1)
+  DDoS        1.000 | 1.000 | 0.115 (rank 1)
+  PortScan    0.968 | 1.000 | 0.107 (rank 1)
+  BruteForce  0.996 | 1.000 | 0.136 (rank 1)
+  WebAttack   0.779 | 0.772
+  Bot         0.981 | 0.991 | 0.207 (rank 1)

@@ -1,0 +1,36 @@
+=== Detection (macro-F1, mean +- 95% t-CI, 5 seeds) ===
+dir_a100       0.9329 +- 0.0160
+dir_a5         0.9453 +- 0.0129
+dir_a1         0.9548 +- 0.0124
+dir_a0.5       0.9439 +- 0.0360
+dir_a0.3       0.8704 +- 0.0588
+dir_a0.1       0.6483 +- 0.0952
+attack_skew    0.8036 +- 0.0297
+central        0.9662 +- 0.0120
+
+=== Seed baseline B_c (central vs central) ===
+Benign      0.0200 (sd 0.0155)
+DoS         0.1309 (sd 0.0488)
+DDoS        0.2807 (sd 0.1005)
+PortScan    0.2450 (sd 0.0878)
+BruteForce  0.2307 (sd 0.0653)
+Bot         0.1540 (sd 0.0569)
+
+=== Fidelity excess over seed baseline (mean over seeds) ===
+partition         Benign       DoS      DDoS  PortScan BruteForc       Bot
+dir_a100          0.2158    0.1830    0.3185    0.1786    0.2164    0.3314
+dir_a5            0.2157    0.1635    0.3208    0.1687    0.2000    0.3320
+dir_a1            0.2057    0.2104    0.2925    0.1980    0.2172    0.3935
+dir_a0.5          0.1900    0.1764    0.2924    0.1848    0.2217    0.4109
+dir_a0.3          0.2047    0.1843    0.2559    0.1789    0.2235    0.4097
+dir_a0.1          0.3321    0.3249    0.3261    0.2791    0.2471    0.4492
+attack_skew       0.1714    0.3129    0.1736    0.1819    0.2069    0.4154
+
+=== Mixture effect (same global model) ===
+dir_a100       D_vs_R 0.5354  D_vs_mix 0.0384  mix share 0.93
+dir_a5         D_vs_R 0.5315  D_vs_mix 0.0462  mix share 0.91
+dir_a1         D_vs_R 0.4590  D_vs_mix 0.0491  mix share 0.89
+dir_a0.5       D_vs_R 0.4084  D_vs_mix 0.0558  mix share 0.86
+dir_a0.3       D_vs_R 0.3808  D_vs_mix 0.0509  mix share 0.87
+dir_a0.1       D_vs_R 0.3983  D_vs_mix 0.0581  mix share 0.85
+attack_skew    D_vs_R 0.3318  D_vs_mix 0.0594  mix share 0.82

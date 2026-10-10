@@ -1,0 +1,273 @@
+{
+ "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+ "torch": "2.5.1+cu121",
+ "args": {
+  "config": "configs/protocol.yaml",
+  "alpha": "1",
+  "seed": 0,
+  "rounds": 10,
+  "central_epochs": 3
+ },
+ "timing_s": {
+  "central_train": 35.6,
+  "fed_train": 106.3,
+  "fed_per_round": 10.6,
+  "eg_R_1052": 0.1,
+  "eg_clients": 0.1
+ },
+ "class_weights": {
+  "Benign": 0.413,
+  "DoS": 1.19,
+  "DDoS": 1.598,
+  "PortScan": 12.064,
+  "BruteForce": 5.919,
+  "WebAttack": 48.258,
+  "Bot": 18.169
+ },
+ "central": {
+  "macro_f1": 0.9478301274766979,
+  "per_class_recall": [
+   0.9996558541664472,
+   0.9997669473009584,
+   0.9991066267276263,
+   0.9880239520958084,
+   0.9971160778658976,
+   0.8,
+   0.9455782312925171
+  ],
+  "support": [
+   284763,
+   34327,
+   19029,
+   334,
+   1387,
+   20,
+   147
+  ]
+ },
+ "fedavg": {
+  "macro_f1": 0.8874514452630002,
+  "per_class_recall": [
+   0.9992590329502077,
+   0.9996504209514376,
+   0.9998423458931105,
+   0.9491017964071856,
+   0.9949531362653208,
+   0.95,
+   0.9387755102040817
+  ],
+  "support": [
+   284763,
+   34327,
+   19029,
+   334,
+   1387,
+   20,
+   147
+  ]
+ },
+ "eg_completeness_rel_err": 0.07845205813646317,
+ "fidelity_fed_vs_central_on_R": {
+  "Benign": {
+   "D": 0.2841,
+   "floor": 0.0487,
+   "EED": 0.2354,
+   "significant": true,
+   "n_explained": 200
+  },
+  "DoS": {
+   "D": 0.4968,
+   "floor": 0.0419,
+   "EED": 0.4549,
+   "significant": true,
+   "n_explained": 200
+  },
+  "DDoS": {
+   "D": 0.2996,
+   "floor": 0.0123,
+   "EED": 0.2873,
+   "significant": true,
+   "n_explained": 200
+  },
+  "PortScan": {
+   "D": 0.6785,
+   "floor": 0.0515,
+   "EED": 0.627,
+   "significant": true,
+   "n_explained": 167
+  },
+  "BruteForce": {
+   "D": 0.3466,
+   "floor": 0.0281,
+   "EED": 0.3185,
+   "significant": true,
+   "n_explained": 200
+  },
+  "WebAttack": "insufficient samples",
+  "Bot": {
+   "D": 0.3157,
+   "floor": 0.0585,
+   "EED": 0.2572,
+   "significant": true,
+   "n_explained": 74
+  }
+ },
+ "client_mixture_check": [
+  {
+   "client": 0,
+   "n": 500,
+   "class_share": {
+    "Benign": 0.628,
+    "DoS": 0.354,
+    "DDoS": 0.014,
+    "PortScan": 0.002,
+    "BruteForce": 0.0,
+    "WebAttack": 0.0,
+    "Bot": 0.002
+   },
+   "D_vs_R": 0.5478,
+   "D_vs_mixture_prediction": 0.0343
+  },
+  {
+   "client": 1,
+   "n": 500,
+   "class_share": {
+    "Benign": 0.85,
+    "DoS": 0.086,
+    "DDoS": 0.064,
+    "PortScan": 0.0,
+    "BruteForce": 0.0,
+    "WebAttack": 0.0,
+    "Bot": 0.0
+   },
+   "D_vs_R": 0.6526,
+   "D_vs_mixture_prediction": 0.0425
+  },
+  {
+   "client": 2,
+   "n": 500,
+   "class_share": {
+    "Benign": 0.128,
+    "DoS": 0.536,
+    "DDoS": 0.272,
+    "PortScan": 0.0,
+    "BruteForce": 0.056,
+    "WebAttack": 0.0,
+    "Bot": 0.008
+   },
+   "D_vs_R": 0.3456,
+   "D_vs_mixture_prediction": 0.0272
+  },
+  {
+   "client": 3,
+   "n": 500,
+   "class_share": {
+    "Benign": 0.01,
+    "DoS": 0.646,
+    "DDoS": 0.334,
+    "PortScan": 0.002,
+    "BruteForce": 0.008,
+    "WebAttack": 0.0,
+    "Bot": 0.0
+   },
+   "D_vs_R": 0.5194,
+   "D_vs_mixture_prediction": 0.0124
+  },
+  {
+   "client": 4,
+   "n": 500,
+   "class_share": {
+    "Benign": 0.774,
+    "DoS": 0.068,
+    "DDoS": 0.136,
+    "PortScan": 0.002,
+    "BruteForce": 0.018,
+    "WebAttack": 0.0,
+    "Bot": 0.002
+   },
+   "D_vs_R": 0.6285,
+   "D_vs_mixture_prediction": 0.0337
+  },
+  {
+   "client": 5,
+   "n": 500,
+   "class_share": {
+    "Benign": 0.872,
+    "DoS": 0.056,
+    "DDoS": 0.07,
+    "PortScan": 0.0,
+    "BruteForce": 0.002,
+    "WebAttack": 0.0,
+    "Bot": 0.0
+   },
+   "D_vs_R": 0.6444,
+   "D_vs_mixture_prediction": 0.0336
+  },
+  {
+   "client": 6,
+   "n": 500,
+   "class_share": {
+    "Benign": 0.714,
+    "DoS": 0.014,
+    "DDoS": 0.268,
+    "PortScan": 0.0,
+    "BruteForce": 0.002,
+    "WebAttack": 0.0,
+    "Bot": 0.002
+   },
+   "D_vs_R": 0.5831,
+   "D_vs_mixture_prediction": 0.0402
+  },
+  {
+   "client": 7,
+   "n": 500,
+   "class_share": {
+    "Benign": 0.674,
+    "DoS": 0.29,
+    "DDoS": 0.016,
+    "PortScan": 0.0,
+    "BruteForce": 0.018,
+    "WebAttack": 0.0,
+    "Bot": 0.002
+   },
+   "D_vs_R": 0.5599,
+   "D_vs_mixture_prediction": 0.0458
+  },
+  {
+   "client": 8,
+   "n": 500,
+   "class_share": {
+    "Benign": 0.82,
+    "DoS": 0.132,
+    "DDoS": 0.042,
+    "PortScan": 0.002,
+    "BruteForce": 0.004,
+    "WebAttack": 0.0,
+    "Bot": 0.0
+   },
+   "D_vs_R": 0.6385,
+   "D_vs_mixture_prediction": 0.0274
+  },
+  {
+   "client": 9,
+   "n": 500,
+   "class_share": {
+    "Benign": 0.972,
+    "DoS": 0.018,
+    "DDoS": 0.01,
+    "PortScan": 0.0,
+    "BruteForce": 0.0,
+    "WebAttack": 0.0,
+    "Bot": 0.0
+   },
+   "D_vs_R": 0.6625,
+   "D_vs_mixture_prediction": 0.0345
+  }
+ ],
+ "summary": {
+  "central_macro_f1": 0.9478,
+  "fedavg_macro_f1": 0.8875,
+  "mean_D_client_vs_R": 0.5782,
+  "mean_D_client_vs_mixture": 0.0332
+ }
+}

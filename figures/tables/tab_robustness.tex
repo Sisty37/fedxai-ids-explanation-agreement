@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Robustness and sensitivity checks.}
+\label{tab:robustness}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{ll}
+\toprule
+Check & Result \\
+\midrule
+RBO vs. 1−J*@10 (1,140 pairs) & Spearman 0.76 \\
+KernelSHAP vs. expected gradients & overall Spearman 0.91; per class 0.36–0.78 \\
+Local vs. shared SHAP background (α=1) & EED Benign 0.07; attacks 0.30–0.64 \\
+Destination Port included & macro-F1 0.960$\pm$0.017 → 0.966$\pm$0.041; rank 1 for every class \\
+PortScan rows after dedupe & 1,669 (no port) vs. 90,613 (with port) \\
+2018 F1 without CWR/ECE (paired) & DDoS +0.220$\pm$0.080; Bot +0.289$\pm$0.284 \\
+\bottomrule
+\end{tabular}
+\end{table}

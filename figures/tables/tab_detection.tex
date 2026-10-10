@@ -1,0 +1,29 @@
+\begin{table}[t]
+\centering
+\caption{Detection on Test-B (mean over 5 seeds; macro-F1 with 95\% t-CI; per-class F1 means).}
+\label{tab:detection}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccccccc}
+\toprule
+Model & Macro-F1 & Benign & DoS & DDoS & PortScan & BruteF. & WebAtt. & Bot \\
+\midrule
+Centralized & 0.966$\pm$0.012 & 1.000 & 1.000 & 1.000 & 0.963 & 0.996 & 0.821 & 0.983 \\
+\midrule
+FedAvg α=100 & 0.933$\pm$0.016 & 1.000 & 0.999 & 1.000 & 0.973 & 0.992 & 0.607 & 0.959 \\
+FedAvg α=5 & 0.945$\pm$0.013 & 1.000 & 1.000 & 1.000 & 0.975 & 0.993 & 0.698 & 0.951 \\
+FedAvg α=1 & 0.955$\pm$0.012 & 1.000 & 1.000 & 1.000 & 0.974 & 0.995 & 0.738 & 0.976 \\
+FedAvg α=0.5 & 0.944$\pm$0.036 & 1.000 & 0.999 & 0.998 & 0.951 & 0.994 & 0.701 & 0.964 \\
+FedAvg α=0.3 & 0.870$\pm$0.059 & 0.998 & 0.999 & 0.900 & 0.871 & 0.994 & 0.473 & 0.858 \\
+FedAvg α=0.1 & 0.648$\pm$0.095 & 0.975 & 0.709 & 0.833 & 0.454 & 0.790 & 0.314 & 0.463 \\
+FedAvg skew & 0.804$\pm$0.030 & 0.999 & 0.997 & 1.000 & 0.776 & 0.970 & 0.000 & 0.885 \\
+\midrule
+FedProx α=100 & 0.958$\pm$0.004 & -- & -- & -- & -- & -- & -- & -- \\
+FedProx α=5 & 0.962$\pm$0.007 & -- & -- & -- & -- & -- & -- & -- \\
+FedProx α=1 & 0.956$\pm$0.007 & -- & -- & -- & -- & -- & -- & -- \\
+FedProx α=0.5 & 0.957$\pm$0.013 & -- & -- & -- & -- & -- & -- & -- \\
+FedProx α=0.3 & 0.956$\pm$0.010 & -- & -- & -- & -- & -- & -- & -- \\
+FedProx α=0.1 & 0.800$\pm$0.071 & -- & -- & -- & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}

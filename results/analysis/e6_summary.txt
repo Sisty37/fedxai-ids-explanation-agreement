@@ -1,0 +1,39 @@
+=== E6: 2017 -> 2018 per family: dF1 (F1 drop) | dE (explanation shift, EED) ===
+
+central  association rho=+0.547 [+0.274, +0.765] n=40
+  DoS         dF1 +0.971+-0.005 | dE +0.553+-0.033
+  DDoS        dF1 +1.000+-0.000 | dE +0.747+-0.025
+  BruteForce  dF1 +0.852+-0.189 | dE +0.511+-0.041
+  Bot         dF1 +0.983+-0.012 | dE +0.721+-0.036
+
+fedavg_a100  association rho=+0.052 [-0.311, +0.383] n=40
+  DoS         dF1 +0.971+-0.002 | dE +0.574+-0.040
+  DDoS        dF1 +1.000+-0.000 | dE +0.707+-0.012
+  BruteForce  dF1 +0.992+-0.001 | dE +0.408+-0.027
+  Bot         dF1 +0.959+-0.034 | dE +0.706+-0.021
+
+fedavg_a1  association rho=+0.053 [-0.273, +0.371] n=40
+  DoS         dF1 +0.974+-0.002 | dE +0.571+-0.052
+  DDoS        dF1 +1.000+-0.000 | dE +0.688+-0.031
+  BruteForce  dF1 +0.985+-0.022 | dE +0.379+-0.032
+  Bot         dF1 +0.976+-0.008 | dE +0.710+-0.039
+
+fedavg_a0.1  association rho=+0.045 [-0.311, +0.351] n=40
+  DoS         dF1 +0.701+-0.246 | dE +0.452+-0.049
+  DDoS        dF1 +0.833+-0.244 | dE +0.676+-0.035
+  BruteForce  dF1 +0.701+-0.336 | dE +0.355+-0.035
+  Bot         dF1 +0.463+-0.320 | dE +0.643+-0.056
+
+fedprox_a100  association rho=+0.326 [-0.088, +0.630] n=40
+  DoS         dF1 +0.970+-0.001 | dE +0.611+-0.061
+  DDoS        dF1 +1.000+-0.000 | dE +0.773+-0.016
+  BruteForce  dF1 +0.992+-0.001 | dE +0.485+-0.039
+  Bot         dF1 +0.986+-0.004 | dE +0.639+-0.040
+
+fedprox_a0.1  association rho=+0.158 [-0.211, +0.485] n=40
+  DoS         dF1 +0.951+-0.048 | dE +0.416+-0.080
+  DDoS        dF1 +0.986+-0.022 | dE +0.704+-0.060
+  BruteForce  dF1 +0.865+-0.226 | dE +0.349+-0.038
+  Bot         dF1 +0.749+-0.284 | dE +0.608+-0.071
+
+all models pooled: rho=+0.257 [+0.125, +0.380] n=240

@@ -1,0 +1,345 @@
+{
+ "families": [
+  "DoS",
+  "DDoS",
+  "BruteForce",
+  "Bot"
+ ],
+ "ecn_features": [
+  "cwrflagcount",
+  "eceflagcount"
+ ],
+ "A_attribution": {
+  "central": {
+   "DoS": {
+    "ecn_share_2017": [
+     0.0,
+     0.0
+    ],
+    "ecn_share_2018": [
+     0.0,
+     0.0
+    ],
+    "best_ecn_rank_2018_median": 76.0,
+    "shift_vs_attribution_change_spearman": [
+     -0.2815430497606387,
+     0.047380856710410826
+    ],
+    "top5_2017_counts": {
+     "fwdrstflags": 10,
+     "bwdrstflags": 10,
+     "bwdsegmentsizeavg": 10,
+     "bwdpacketlengthmean": 10,
+     "packetlengthmean": 4,
+     "averagepacketsize": 3
+    },
+    "top5_2018_counts": {
+     "bwdrstflags": 10,
+     "fwdiatmin": 10,
+     "bwdpacketlengthmin": 8,
+     "rstflagcount": 7,
+     "finflagcount": 4,
+     "flowiatmax": 4
+    }
+   },
+   "DDoS": {
+    "ecn_share_2017": [
+     0.0,
+     0.0
+    ],
+    "ecn_share_2018": [
+     0.8839291735458483,
+     0.004356306720650327
+    ],
+    "best_ecn_rank_2018_median": 1.0,
+    "shift_vs_attribution_change_spearman": [
+     -0.020937957535780944,
+     0.04904251853303362
+    ],
+    "top5_2017_counts": {
+     "bwdpacketlengthmin": 10,
+     "actdatapktfwd": 8,
+     "bwdrstflags": 8,
+     "activemin": 7,
+     "bwdsegmentsizeavg": 5,
+     "bwdpacketlengthmean": 4
+    },
+    "top5_2018_counts": {
+     "cwrflagcount": 10,
+     "eceflagcount": 10,
+     "bwdrstflags": 10,
+     "fwdiatmin": 10,
+     "fwdrstflags": 3,
+     "flowiatmax": 3
+    }
+   },
+   "BruteForce": {
+    "ecn_share_2017": [
+     0.0,
+     0.0
+    ],
+    "ecn_share_2018": [
+     0.0,
+     0.0
+    ],
+    "best_ecn_rank_2018_median": 76.0,
+    "shift_vs_attribution_change_spearman": [
+     -0.40813878931540526,
+     0.03134422684407607
+    ],
+    "top5_2017_counts": {
+     "bwdrstflags": 10,
+     "bwdsegmentsizeavg": 10,
+     "bwdpacketlengthmean": 10,
+     "actdatapktfwd": 6,
+     "fwdpshflags": 5,
+     "subflowbwdbytes": 3
+    },
+    "top5_2018_counts": {
+     "fwdpshflags": 10,
+     "bwdpshflags": 10,
+     "actdatapktfwd": 10,
+     "bwdrstflags": 8,
+     "pshflagcount": 5,
+     "fwdheaderlength": 3
+    }
+   },
+   "Bot": {
+    "ecn_share_2017": [
+     0.0,
+     0.0
+    ],
+    "ecn_share_2018": [
+     0.8814175858676462,
+     0.0046734574607208736
+    ],
+    "best_ecn_rank_2018_median": 1.0,
+    "shift_vs_attribution_change_spearman": [
+     0.24884763807338367,
+     0.03617037204222492
+    ],
+    "top5_2017_counts": {
+     "bwdsegmentsizeavg": 10,
+     "bwdpacketlengthmean": 10,
+     "subflowbwdbytes": 9,
+     "bwdpacketlengthmin": 8,
+     "bwdrstflags": 6,
+     "totallengthofbwdpacket": 3
+    },
+    "top5_2018_counts": {
+     "cwrflagcount": 10,
+     "eceflagcount": 10,
+     "bwdrstflags": 10,
+     "flowiatmax": 10,
+     "fwdrstflags": 4,
+     "actdatapktfwd": 3
+    }
+   }
+  },
+  "fedavg_a100": {
+   "DoS": {
+    "ecn_share_2017": [
+     0.0,
+     0.0
+    ],
+    "ecn_share_2018": [
+     0.0,
+     0.0
+    ],
+    "best_ecn_rank_2018_median": 76.0,
+    "shift_vs_attribution_change_spearman": [
+     -0.3340356908578779,
+     0.02119215550602321
+    ],
+    "top5_2017_counts": {
+     "bwdrstflags": 10,
+     "packetlengthmean": 10,
+     "averagepacketsize": 10,
+     "fwdrstflags": 8,
+     "bwdsegmentsizeavg": 5,
+     "bwdpacketlengthmean": 5
+    },
+    "top5_2018_counts": {
+     "bwdrstflags": 10,
+     "fwdiatmin": 10,
+     "fwdpacketlengthstd": 10,
+     "finflagcount": 10,
+     "totalbwdpackets": 3,
+     "flowiatmax": 2
+    }
+   },
+   "DDoS": {
+    "ecn_share_2017": [
+     0.0,
+     0.0
+    ],
+    "ecn_share_2018": [
+     0.7984296918856687,
+     0.011717848685045917
+    ],
+    "best_ecn_rank_2018_median": 1.0,
+    "shift_vs_attribution_change_spearman": [
+     -0.0925490406955299,
+     0.04072089004582813
+    ],
+    "top5_2017_counts": {
+     "packetlengthmean": 10,
+     "averagepacketsize": 10,
+     "bwdrstflags": 10,
+     "activemin": 8,
+     "bwdpshflags": 5,
+     "actdatapktfwd": 3
+    },
+    "top5_2018_counts": {
+     "cwrflagcount": 10,
+     "eceflagcount": 10,
+     "bwdrstflags": 10,
+     "fwdheaderlength": 9,
+     "flowiatmax": 9,
+     "flowbytess": 2
+    }
+   },
+   "BruteForce": {
+    "ecn_share_2017": [
+     0.0,
+     0.0
+    ],
+    "ecn_share_2018": [
+     0.0,
+     0.0
+    ],
+    "best_ecn_rank_2018_median": 76.0,
+    "shift_vs_attribution_change_spearman": [
+     -0.37039928681698064,
+     0.01768585651704686
+    ],
+    "top5_2017_counts": {
+     "bwdrstflags": 10,
+     "bwdpshflags": 10,
+     "totalbwdpackets": 10,
+     "actdatapktfwd": 9,
+     "bwdheaderlength": 4,
+     "flowiatmax": 2
+    },
+    "top5_2018_counts": {
+     "bwdpshflags": 10,
+     "fwdpshflags": 10,
+     "bwdrstflags": 10,
+     "totalbwdpackets": 10,
+     "actdatapktfwd": 9,
+     "pshflagcount": 1
+    }
+   },
+   "Bot": {
+    "ecn_share_2017": [
+     0.0,
+     0.0
+    ],
+    "ecn_share_2018": [
+     0.7999510063705899,
+     0.012007095066358801
+    ],
+    "best_ecn_rank_2018_median": 1.0,
+    "shift_vs_attribution_change_spearman": [
+     0.16230243999216126,
+     0.026513333258282132
+    ],
+    "top5_2017_counts": {
+     "bwdrstflags": 10,
+     "bwdpacketlengthmean": 8,
+     "finflagcount": 8,
+     "totalbwdpackets": 8,
+     "bwdsegmentsizeavg": 6,
+     "downupratio": 3
+    },
+    "top5_2018_counts": {
+     "cwrflagcount": 10,
+     "eceflagcount": 10,
+     "fwdheaderlength": 10,
+     "bwdrstflags": 10,
+     "flowiatmax": 10
+    }
+   }
+  }
+ },
+ "B_ablation": {
+  "full": {
+   "testb_macro_f1": [
+    0.9661988260983752,
+    0.012031877488414442
+   ],
+   "f1_2018": {
+    "Benign": [
+     0.3264473022692261,
+     0.008678670358398201
+    ],
+    "DoS": [
+     0.02845409058426334,
+     0.004527385622421016
+    ],
+    "DDoS": [
+     0.0,
+     0.0
+    ],
+    "BruteForce": [
+     0.14404653090347633,
+     0.18891243418934112
+    ],
+    "Bot": [
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "no_ecn": {
+   "testb_macro_f1": [
+    0.9687099100331965,
+    0.01566994037930945
+   ],
+   "f1_2018": {
+    "Benign": [
+     0.34722290850274995,
+     0.017678144023198755
+    ],
+    "DoS": [
+     0.029529523287134474,
+     0.004620560920433799
+    ],
+    "DDoS": [
+     0.21988813540937854,
+     0.08023059462271898
+    ],
+    "BruteForce": [
+     0.023440449712181517,
+     0.04085255551956557
+    ],
+    "Bot": [
+     0.28924915276394225,
+     0.28394118795092443
+    ]
+   }
+  },
+  "paired_diff_2018_no_ecn_minus_full": {
+   "Benign": [
+    0.020775606233523813,
+    0.020653235446062047
+   ],
+   "DoS": [
+    0.0010754327028711344,
+    0.006808961881701417
+   ],
+   "DDoS": [
+    0.21988813540937854,
+    0.08023059462271898
+   ],
+   "BruteForce": [
+    -0.12060608119129482,
+    0.202951038016828
+   ],
+   "Bot": [
+    0.28924915276394225,
+    0.28394118795092443
+   ]
+  }
+ }
+}
