@@ -1,72 +1,86 @@
-# fedxai-ids — Week 1 (data pipeline + agreement metrics)
+# Measuring Explanation Agreement in Federated Intrusion Detection
 
-Code for the TAIIS 2026 study *cross-client explanation agreement in federated IDS*.
-Every choice here follows the locked protocol in `configs/protocol.yaml`.
+Code for the TAIIS 2026 paper *"Measuring Explanation Agreement in Federated Intrusion
+Detection: A Noise-Aware Evaluation Protocol"* (A. J. Sisty, N. Roy, A. Bhowmik,
+S. R. Ahona, J. A. Noshin; American International University-Bangladesh).
 
-## Layout
+The protocol compares SHAP explanations across federated clients and models with the
+**excess explanation divergence (EED)**: a top-weighted rank divergence (1 - RBO, p = 0.9)
+minus a bootstrap noise floor, read against retraining-seed and IID-federated baselines.
 
-| Path | What it does |
-| --- | --- |
-| `configs/protocol.yaml` | Locked protocol (split, R, transform, partitions, EED settings) |
-| `src/fedxai/data/schema.py` | 2018→2017 column map, label → family mapping (Infiltration/Heartbleed dropped) |
-| `src/fedxai/data/prepare.py` | Cleaning: header-repeat rows, labels, ID cols + Dst Port, ±Inf→NaN→drop, dedupe, label conflicts, 70/10/20 split, constant cols (train only) |
-| `src/fedxai/data/partition.py` | Dirichlet + attack-skew partitions; Test-B split with the same per-class client proportions |
-| `src/fedxai/data/fed_norm.py` | Federated normalisation statistics (min → log1p mask; n, Σx, Σx² → mean/std); reference set R + SHAP background |
-| `src/fedxai/metrics/agreement.py` | RBO, Spearman divergence, J₀ / J\*, bootstrap noise floor, signed EED, EED⁺, sig. rate, factorized 2×2, t-based CI |
-| `scripts/` | `check_columns.py`, `prepare_data.py`, `make_partitions.py`, `make_synthetic.py` |
-| `tests/` | 48 unit tests (run `python -m pytest -q`) |
+## Repository layout
 
-## Download (recommended: improved Distrinet releases)
+| Path | Content |
+|---|---|
+| `configs/protocol.yaml` | Locked protocol: split, reference set, background, partitions, RBO p, bootstrap, seeds |
+| `src/fedxai/data/` | Cleaning, label mapping, stratified split, federated normalisation, partitions |
+| `src/fedxai/train/` | MLP / 1D-CNN, centralized, FedAvg, FedProx, local-only training, evaluation |
+| `src/fedxai/explain/eg.py` | Expected gradients (estimator behind SHAP's GradientExplainer) |
+| `src/fedxai/metrics/agreement.py` | Importance vectors, RBO, noise floor, EED, chance-corrected Jaccard, t-intervals |
+| `scripts/` | One script per experiment (see below) |
+| `tests/` | Unit tests for metrics, data handling and models (`pytest`) |
+| `docs/supplement.pdf` | Supplement: EED pseudocode, tables and figures moved from the paper, sensitivity analyses, full UNSW-NB15 results |
 
-Use the error-corrected versions from Liu et al., IEEE CNS 2022
-(https://intrusion-detection.distrinet-research.be/CNS2022/index.html).
-Both were regenerated with the same fixed CICFlowMeter, so 2017 and 2018 share
-one column schema.
+Datasets are **not** included (see below).
 
-```bash
-mkdir -p data/raw && cd data/raw
-curl -L -O https://intrusion-detection.distrinet-research.be/CNS2022/Datasets/CICIDS2017_improved.zip   # ~328 MB
-curl -L -O https://intrusion-detection.distrinet-research.be/CNS2022/Datasets/CSECICIDS2018_improved.zip # ~9.9 GB zip, ~36 GB CSV
-unzip CICIDS2017_improved.zip   -d cicids2017
-unzip CSECICIDS2018_improved.zip -d csecicids2018
+## Setup
+
+Python 3.10+, PyTorch 2.x (CUDA optional), then
+
+```
+pip install -r requirements.txt
+pip install shap          # only for the KernelSHAP checks
+pytest -q                 # optional
 ```
 
-Make sure each folder directly contains the day-wise `*.csv` files (move them up
-if the zip adds a sub-folder). Record the download date in the lock record.
+All results in the paper were produced on a laptop (RTX 4050, 6 GB; 16 GB RAM).
 
-- `... - Attempted` flows are dropped (locked); the `Attempted Category` column is removed.
-- 2018 is streamed in chunks: all attack rows kept, Benign sampled at
-  `cicids2018_benign_fraction` (default 0.05). Needs ~40 GB free disk for the CSVs.
+## Data
 
-## Week 1 steps
+| Dataset | Source | Put the CSVs in |
+|---|---|---|
+| CICIDS2017, error-corrected (Engelen et al. 2021; Liu et al. 2022) | Distrinet, KU Leuven: https://intrusion-detection.distrinet-research.be/CNS2022/ | `data/raw/cicids2017/` |
+| CSE-CIC-IDS2018, error-corrected (Liu et al. 2022) | same page | `data/raw/csecicids2018/` |
+| UNSW-NB15 (training-set + testing-set CSVs) | UNSW Canberra: https://research.unsw.edu.au/projects/unsw-nb15-dataset | `data/raw/unswnb15/` |
 
-1. `pip install -r requirements.txt` then `python -m pytest -q` (all should pass).
-2. Put the CSVs in `data/raw/cicids2017/` and `data/raw/csecicids2018/`.
-3. `python scripts/check_columns.py data/raw/cicids2017 data/raw/csecicids2018`
-   — anything listed as "only 2017/only 2018" needs an entry in `COLUMN_MAP_2018`
-   (`schema.py`). Corrected dataset releases may use different headers.
-4. `python scripts/prepare_data.py` — if it stops with `Unknown label`, add the
-   label to `map_label()`; never silently drop it.
-5. `python scripts/make_partitions.py` — 35 partitions (6 α + attack-skew × 5 seeds).
-6. Fill the dataset lock record below from `data/processed/lock_record.json`
-   and commit both. After this, the data protocol does not change.
+## Reproducing the paper (run from the repository root)
 
-## Dataset lock record
+| Step | Command | Paper |
+|---|---|---|
+| 1 | `python scripts/prepare_data.py --skip-2018` | Sect. 4 (cleaning counts in `data/processed/lock_record.json`) |
+| 2 | `python scripts/extend_seeds.py` then `python scripts/make_partitions.py` | 10 seeds, client partitions |
+| 3 | `python scripts/train_all.py` and `python scripts/train_all.py --fedprox` | centralized, FedAvg, FedProx models |
+| 4 | `python scripts/train_local.py` | local-only models (factorized analysis) |
+| 5 | `python scripts/analyze_main.py` | seed baseline, fidelity, detection, class mix, trajectories |
+| 6 | `python scripts/analyze_extra.py` | heterogeneity drift, factorized analysis (Table 2) |
+| 7 | `python scripts/analyze_fedprox_rq2.py` | FedProx vs FedAvg (Table 3), run-level coupling |
+| 8 | `python scripts/e7_ablations.py`, `python scripts/e7_dstport.py` | Jaccard, background, KernelSHAP, destination port |
+| 9 | `python scripts/prepare_2018.py`, `analyze_e6.py`, `sanity_e6.py`, `e6_mechanism.py` | cross-dataset shift (Fig. 4) |
+| 10 | `python scripts/cnn_validation.py` | 1D-CNN |
+| 11 | `python scripts/sensitivity.py` | sensitivity: RBO p, background size, explained flows, bootstrap, KernelSHAP per class, cost, per-class F1 |
+| 12 | `python scripts/unsw.py all` | replication on UNSW-NB15 |
+| 13 | `python scripts/make_figures.py`, `python scripts/check_numbers.py` | supplementary figures; checks every number quoted in the paper |
+| 14 | `python scripts/make_fig_sources.py`, `python scripts/make_fig_main2.py` | paper Fig. 2 (CICIDS2017 vs. UNSW-NB15) and Fig. 3 (detection, distance over rounds) |
 
-```text
-CICIDS2017      — exact source/version:
-CSE-CIC-IDS2018 — exact source/version:
-Removed rows (header repeat / dropped classes / Inf-NaN / duplicates / label conflicts):
-Removed columns (ID / constant):
-Final features (2017 full / 2017∩2018 common):
-Final class counts (2017 / 2018):
+Every training script is resumable (finished runs are skipped). Random seeds: data split
+and reference set use seed 0; training seeds are 0-9 (0-4 for the CNN); partitions use
+the training seed.
+
+## EED in a few lines
+
+```python
+from fedxai.metrics.agreement import importance, d_rbo, bootstrap_importances, within_divergences
+import numpy as np
+
+def noise_floor(phi, B=1000, pairs=5000, p=0.9, rng=np.random.default_rng(0)):
+    # phi: SHAP matrix (n_flows, n_features) of ONE class, shared background
+    return within_divergences(bootstrap_importances(phi, B, rng), pairs, rng, p).mean()
+
+def eed(phi_a, phi_b, p=0.9):
+    D = d_rbo(importance(phi_a), importance(phi_b), p)
+    return D - 0.5 * (noise_floor(phi_a) + noise_floor(phi_b))
 ```
 
-## Notes
+## Citation
 
-- Normalisation stats are additive, so federated stats equal pooled train
-  stats for every partition (tested). Cross-dataset uses the 2017 stats only.
-- J₀ reproduces FedSHAP-WSN Remark 1 (k = 3, 5, 10, 15; F = 18) — tested.
-- Bootstrap reuses the SHAP matrix (no recomputation): B = 1000 takes ~0.3 s per client.
-- R and background indices are stored in `cicids2017.npz`; R never enters
-  training, tuning or early stopping.
+If you use this code, please cite the TAIIS 2026 paper (Springer LNEE, to appear).

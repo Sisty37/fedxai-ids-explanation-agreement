@@ -1,0 +1,60 @@
+UNSW-NB15: 64 features, classes analysed (R >= 30): [np.str_('Normal'), np.str_('Exploits'), np.str_('Fuzzers'), np.str_('Reconnaissance'), np.str_('Generic'), np.str_('DoS'), np.str_('Shellcode'), np.str_('Analysis'), np.str_('Backdoor')]
+R counts: {np.str_('Normal'): 200, np.str_('Exploits'): 200, np.str_('Fuzzers'): 200, np.str_('Reconnaissance'): 200, np.str_('Generic'): 200, np.str_('DoS'): 200, np.str_('Shellcode'): 145, np.str_('Analysis'): 45, np.str_('Backdoor'): 35, np.str_('Worms'): 16}
+
+=== Detection: macro-F1 (mean +- 95% t-CI) ===
+central          0.6173 +- 0.0054
+fedavg_a100      0.5533 +- 0.0039
+fedavg_a5        0.5538 +- 0.0052
+fedavg_a1        0.5311 +- 0.0169
+fedavg_a0.5      0.4906 +- 0.0201
+fedavg_a0.3      0.4598 +- 0.0349
+fedavg_a0.1      0.3282 +- 0.0614
+fedprox_a100     0.5547 +- 0.0039
+fedprox_a0.1     0.3297 +- 0.0406
+per-class F1 (central | fedavg a100 | fedavg a0.1), test support:
+  Normal          0.886 | 0.867 | 0.886   n=17061
+  Exploits        0.825 | 0.806 | 0.526   n=5090
+  Fuzzers         0.661 | 0.625 | 0.226   n=3750
+  Reconnaissance  0.857 | 0.771 | 0.412   n=1684
+  Generic         0.912 | 0.895 | 0.773   n=1457
+  DoS             0.399 | 0.300 | 0.137   n=725
+  Shellcode       0.504 | 0.489 | 0.219   n=289
+  Analysis        0.233 | 0.216 | 0.056   n=90
+  Backdoor        0.566 | 0.330 | 0.041   n=70
+  Worms           0.330 | 0.234 | 0.005   n=32
+
+=== A. Seed baseline (central vs central, per-class EED) ===
+Normal:0.138 Exploits:0.106 Fuzzers:0.098 Reconnaissance:0.175 Generic:0.159 DoS:0.104 Shellcode:0.167 Analysis:0.143 Backdoor:0.119
+
+=== B. Fidelity excess over seed baseline (class-avg; per class at alpha=100) ===
+a=100   0.122 +- 0.009
+a=5     0.141 +- 0.010
+a=1     0.193 +- 0.011
+a=0.5   0.218 +- 0.020
+a=0.3   0.239 +- 0.022
+a=0.1   0.261 +- 0.030
+a=100 per class: Normal:0.122* Exploits:0.148* Fuzzers:0.114* Reconnaissance:0.068* Generic:0.186* DoS:0.245* Shellcode:0.045* Analysis:0.080* Backdoor:0.093*
+
+=== F. Drift vs alpha=100 (class-avg, Holm p) | F1 drop (Holm p) ===
+a=5     drift 0.022 +- 0.009 (p=0.000265) | F1 drop -0.000 +- 0.004 (p=0.815) | sig classes 2/9
+a=1     drift 0.143 +- 0.020 (p=1.04e-07) | F1 drop 0.022 +- 0.018 (p=0.0371) | sig classes 9/9
+a=0.5   drift 0.206 +- 0.014 (p=3.36e-10) | F1 drop 0.063 +- 0.021 (p=0.000394) | sig classes 9/9
+a=0.3   drift 0.232 +- 0.015 (p=2.53e-10) | F1 drop 0.093 +- 0.037 (p=0.000823) | sig classes 9/9
+a=0.1   drift 0.261 +- 0.026 (p=1.01e-08) | F1 drop 0.225 +- 0.060 (p=6.7e-05) | sig classes 9/9
+run-level Spearman drift vs F1 drop: raw 0.88, within alpha 0.52 (n=50)
+
+=== H. FedProx - FedAvg (dF1; per-class d fidelity, * Holm p<.05) ===
+a=100   dF1 +0.001 (p=0.401) | Normal:-0.03 Exploits:-0.02* Fuzzers:-0.01 Reconnaissance:+0.01* Generic:-0.04* DoS:+0.01 Shellcode:+0.01 Analysis:+0.00 Backdoor:+0.01
+a=0.1   dF1 +0.002 (p=0.891) | Normal:+0.18* Exploits:+0.01 Fuzzers:+0.04 Reconnaissance:-0.01 Generic:+0.00 DoS:+0.00 Shellcode:+0.16* Analysis:-0.08 Backdoor:+0.16*
+
+=== D. Class mix (same global model): D vs R | D vs mixture | share ===
+a=100   0.208 | 0.037 | 0.82 | per-class client EED Normal:0.012 Exploi:0.000 Fuzzer:-0.002 Reconn:-0.001 Generi:-0.007 DoS:-0.004 Shellc:0.007
+a=5     0.196 | 0.034 | 0.83 | per-class client EED Normal:0.013 Exploi:0.003 Fuzzer:-0.006 Reconn:0.001 Generi:0.008 DoS:0.005 Shellc:0.002
+a=1     0.235 | 0.056 | 0.76 | per-class client EED Normal:0.018 Exploi:0.005 Fuzzer:-0.005 Reconn:-0.001 Generi:0.003 DoS:0.015 Shellc:0.000 Analys:0.020 Backdo:0.023
+a=0.5   0.213 | 0.060 | 0.72 | per-class client EED Normal:0.012 Exploi:0.006 Fuzzer:-0.001 Reconn:0.002 Generi:0.001 DoS:-0.001 Shellc:0.001 Analys:0.061 Backdo:-0.002
+a=0.3   0.191 | 0.053 | 0.72 | per-class client EED Normal:0.009 Exploi:0.002 Fuzzer:0.004 Reconn:0.001 Generi:0.003 DoS:-0.014 Shellc:0.006 Analys:0.021 Backdo:0.010
+a=0.1   0.198 | 0.061 | 0.69 | per-class client EED Normal:0.032 Exploi:0.009 Fuzzer:-0.001 Reconn:-0.001 Generi:0.009 DoS:0.000 Shellc:0.003 Analys:0.010 Backdo:-0.006
+
+=== BG. alpha=1, client-local background vs shared (same flows) | client(local bg) vs R ===
+Normal:0.158 Exploi:0.235 Fuzzer:0.348 Reconn:0.257 Generi:0.173 DoS:0.181 Shellc:0.215 Analys:0.389 Backdo:0.316
+Normal:0.194 Exploi:0.259 Fuzzer:0.346 Reconn:0.259 Generi:0.170 DoS:0.225 Shellc:0.221 Analys:0.369 Backdo:0.314

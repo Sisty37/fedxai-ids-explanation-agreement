@@ -16,3 +16,6 @@ venv/
 *.log
 *.out
 *.synctex.gz
+results/cache/
+results/unsw/cache/
+research_plan_TAIIS2026.md

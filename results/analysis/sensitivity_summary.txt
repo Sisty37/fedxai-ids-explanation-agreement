@@ -1,0 +1,66 @@
+=== S1: weight p (class-avg federation excess a=100 | class-avg drift a=0.1 | mix share a=1 | #sig fed/drift | rho vs p=0.9) ===
+p=0.8   fed 0.262+-0.017 | drift 0.312+-0.051 | mix 0.92/0.86 | 6/6 of 6 | rho 0.95
+        seed baseline: Benign:0.00 DoS:0.13 DDoS:0.33 PortSc:0.32 BruteF:0.23 Bot:0.17
+p=0.9   fed 0.240+-0.015 | drift 0.276+-0.041 | mix 0.89/0.85 | 6/6 of 6 | rho 1.00
+        seed baseline: Benign:0.02 DoS:0.13 DDoS:0.28 PortSc:0.25 BruteF:0.23 Bot:0.15
+p=0.95  fed 0.199+-0.012 | drift 0.231+-0.034 | mix 0.86/0.84 | 6/6 of 6 | rho 0.90
+        seed baseline: Benign:0.03 DoS:0.11 DDoS:0.23 PortSc:0.18 BruteF:0.20 Bot:0.13
+p=0.98  fed 0.123+-0.007 | drift 0.149+-0.023 | mix 0.84/0.83 | 6/6 of 6 | rho 0.66
+        seed baseline: Benign:0.03 DoS:0.08 DDoS:0.14 PortSc:0.11 BruteF:0.13 Bot:0.09
+p=sp    fed 0.073+-0.007 | drift 0.122+-0.032 | mix 0.87/0.88 | 6/6 of 6 | rho 0.08
+        seed baseline: Benign:0.02 DoS:0.03 DDoS:0.06 PortSc:0.03 BruteF:0.05 Bot:0.04
+
+=== S2: background size (class-avg federation excess | drift a=0.1) ===
+m25   fed 0.254+-0.021 | drift 0.291+-0.044 | base Benign:0.03 DoS:0.21 DDoS:0.22 PortSc:0.21 BruteF:0.23 Bot:0.11
+m50   fed 0.361+-0.022 | drift 0.291+-0.048 | base Benign:0.01 DoS:0.14 DDoS:0.15 PortSc:0.13 BruteF:0.15 Bot:0.09
+main  fed 0.240+-0.015 | drift 0.276+-0.041 | base Benign:0.02 DoS:0.13 DDoS:0.28 PortSc:0.25 BruteF:0.23 Bot:0.15
+m200  fed 0.251+-0.014 | drift 0.289+-0.052 | base Benign:0.01 DoS:0.16 DDoS:0.28 PortSc:0.21 BruteF:0.22 Bot:0.18
+same model, main vs m100_drawB: Benign:-0.023 DoS:0.107 DDoS:0.257 PortSc:0.084 BruteF:0.144 Bot:0.178
+same model, main vs m100_drawC: Benign:-0.023 DoS:0.048 DDoS:0.134 PortSc:0.027 BruteF:0.066 Bot:0.072
+
+=== S3: explained flows n -> floor (sd) | EED between two centralized seeds (sd) ===
+Benign     n=10: 0.214(0.076)|-0.129(0.080) n=20: 0.167(0.063)|-0.077(0.061) n=30: 0.147(0.052)|-0.060(0.053) n=50: 0.128(0.036)|-0.048(0.044) n=100: 0.098(0.024)|-0.018(0.022) | all n=200: 0.069|0.019
+DoS        n=10: 0.179(0.066)|0.049(0.092) n=20: 0.140(0.045)|0.089(0.053) n=30: 0.116(0.031)|0.107(0.058) n=50: 0.087(0.022)|0.119(0.056) n=100: 0.067(0.016)|0.139(0.052) | all n=200: 0.049|0.149
+DDoS       n=10: 0.156(0.043)|0.248(0.088) n=20: 0.129(0.044)|0.284(0.083) n=30: 0.114(0.042)|0.299(0.071) n=50: 0.087(0.036)|0.319(0.080) n=100: 0.065(0.031)|0.333(0.083) | all n=200: 0.039|0.340
+PortScan   n=10: 0.142(0.040)|0.156(0.113) n=20: 0.112(0.029)|0.169(0.085) n=30: 0.101(0.029)|0.185(0.093) n=50: 0.088(0.026)|0.210(0.087) n=100: 0.067(0.025)|0.220(0.052) | all n=167: 0.056|0.241
+BruteForce n=10: 0.126(0.021)|0.134(0.044) n=20: 0.099(0.016)|0.173(0.045) n=30: 0.085(0.017)|0.181(0.046) n=50: 0.062(0.014)|0.198(0.049) n=100: 0.043(0.014)|0.212(0.045) | all n=200: 0.026|0.226
+Bot        n=10: 0.159(0.074)|0.089(0.094) n=20: 0.159(0.045)|0.081(0.067) n=30: 0.132(0.044)|0.115(0.064) n=50: 0.111(0.033)|0.130(0.054) | all n=74: 0.096|0.158
+a=1: client-class cells >= T: T=10:524 T=30:434 T=50:400 T=100:355
+a=0.1: client-class cells >= T: T=10:296 T=30:257 T=50:240 T=100:209
+
+=== S4: floor mean (MC sd over 10 repeats) ===
+Benign     B200_pairs1000:0.0721(0.0019) B200_pairs5000:0.0721(0.0020) B200_pairs20000:0.0719(0.0019) B500_pairs1000:0.0725(0.0009) B500_pairs5000:0.0722(0.0010) B500_pairs20000:0.0723(0.0011) B1000_pairs1000:0.0726(0.0010) B1000_pairs5000:0.0723(0.0009) B1000_pairs20000:0.0723(0.0009) B2000_pairs1000:0.0721(0.0011) B2000_pairs5000:0.0723(0.0008) B2000_pairs20000:0.0723(0.0007)
+DoS        B200_pairs1000:0.0404(0.0031) B200_pairs5000:0.0404(0.0026) B200_pairs20000:0.0404(0.0025) B500_pairs1000:0.0401(0.0022) B500_pairs5000:0.0404(0.0023) B500_pairs20000:0.0401(0.0018) B1000_pairs1000:0.0394(0.0018) B1000_pairs5000:0.0398(0.0011) B1000_pairs20000:0.0397(0.0012) B2000_pairs1000:0.0392(0.0016) B2000_pairs5000:0.0390(0.0013) B2000_pairs20000:0.0392(0.0013)
+DDoS       B200_pairs1000:0.0706(0.0038) B200_pairs5000:0.0710(0.0031) B200_pairs20000:0.0709(0.0030) B500_pairs1000:0.0705(0.0025) B500_pairs5000:0.0705(0.0022) B500_pairs20000:0.0706(0.0023) B1000_pairs1000:0.0715(0.0033) B1000_pairs5000:0.0714(0.0019) B1000_pairs20000:0.0717(0.0020) B2000_pairs1000:0.0712(0.0021) B2000_pairs5000:0.0718(0.0011) B2000_pairs20000:0.0719(0.0009)
+PortScan   B200_pairs1000:0.0343(0.0007) B200_pairs5000:0.0344(0.0009) B200_pairs20000:0.0343(0.0009) B500_pairs1000:0.0346(0.0010) B500_pairs5000:0.0343(0.0007) B500_pairs20000:0.0345(0.0009) B1000_pairs1000:0.0342(0.0005) B1000_pairs5000:0.0343(0.0005) B1000_pairs20000:0.0343(0.0004) B2000_pairs1000:0.0345(0.0006) B2000_pairs5000:0.0342(0.0003) B2000_pairs20000:0.0343(0.0004)
+BruteForce B200_pairs1000:0.0223(0.0013) B200_pairs5000:0.0223(0.0011) B200_pairs20000:0.0222(0.0011) B500_pairs1000:0.0222(0.0009) B500_pairs5000:0.0224(0.0007) B500_pairs20000:0.0223(0.0008) B1000_pairs1000:0.0226(0.0005) B1000_pairs5000:0.0225(0.0005) B1000_pairs20000:0.0227(0.0005) B2000_pairs1000:0.0226(0.0005) B2000_pairs5000:0.0226(0.0004) B2000_pairs20000:0.0227(0.0003)
+Bot        B200_pairs1000:0.0758(0.0031) B200_pairs5000:0.0758(0.0033) B200_pairs20000:0.0759(0.0029) B500_pairs1000:0.0755(0.0016) B500_pairs5000:0.0762(0.0019) B500_pairs20000:0.0762(0.0021) B1000_pairs1000:0.0771(0.0020) B1000_pairs5000:0.0768(0.0012) B1000_pairs20000:0.0764(0.0010) B2000_pairs1000:0.0765(0.0013) B2000_pairs5000:0.0766(0.0011) B2000_pairs20000:0.0766(0.0008)
+
+=== S5: KernelSHAP vs EG on the same 20 flows/class (seed baseline | federation excess | drift) ===
+kernelshap:
+   Benign     base -0.217 | fed 0.293+-0.023 | drift 0.287+-0.239 | floor 0.291
+   DoS        base 0.113 | fed 0.059+-0.011 | drift 0.315+-0.154 | floor 0.123
+   DDoS       base 0.050 | fed 0.262+-0.040 | drift 0.232+-0.099 | floor 0.095
+   PortScan   base 0.148 | fed 0.182+-0.082 | drift 0.327+-0.116 | floor 0.188
+   BruteForce base 0.107 | fed 0.177+-0.020 | drift 0.224+-0.120 | floor 0.168
+   Bot        base 0.103 | fed 0.137+-0.121 | drift 0.259+-0.142 | floor 0.178
+expected_gradients_same_flows:
+   Benign     base -0.189 | fed 0.344+-0.014 | drift 0.325+-0.164 | floor 0.263
+   DoS        base 0.083 | fed 0.154+-0.085 | drift 0.294+-0.042 | floor 0.105
+   DDoS       base 0.210 | fed 0.301+-0.026 | drift 0.299+-0.125 | floor 0.101
+   PortScan   base 0.153 | fed 0.184+-0.033 | drift 0.273+-0.092 | floor 0.078
+   BruteForce base 0.180 | fed 0.210+-0.036 | drift 0.202+-0.048 | floor 0.087
+   Bot        base 0.116 | fed 0.321+-0.096 | drift 0.306+-0.135 | floor 0.113
+rank agreement (Spearman) Benign:0.84 DoS:0.65 DDoS:0.48 PortSc:0.62 BruteF:0.62 Bot:0.60
+
+=== S6: NVIDIA GeForce RTX 4050 Laptop GPU: EG on R (1052 flows) 0.4s | floor/class 0.29s | summary 1944 bytes; {'eg_on_R_s': 0.12208484411239624, 'eg_client500_s': 0.04725724458694458}
+
+=== S7: per-class Test-B support | R counts | F1 ===
+              Benign       DoS      DDoS  PortScan  BruteFor  WebAttac       Bot
+support       284763     34327     19029       334      1387        20       147
+R                200       200       200       167       200        11        74
+central        1.000     1.000     1.000     0.963     0.996     0.821     0.983  (n=10)
+fedavg_a10     1.000     0.999     1.000     0.973     0.992     0.607     0.959  (n=10)
+fedavg_a0.     0.975     0.709     0.833     0.454     0.790     0.314     0.463  (n=10)
+attack_ske     0.999     0.997     1.000     0.776     0.970     0.000     0.885  (n=10)
+fedprox0.0     0.996     0.964     0.986     0.584     0.866     0.458     0.749  (n=10)
