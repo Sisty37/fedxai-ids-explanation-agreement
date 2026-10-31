@@ -78,7 +78,7 @@ def fmt(v, d=3):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--in", dest="inp", default="results/analysis")
-    ap.add_argument("--out", default="figures"); ap.add_argument("--n-seeds", type=int, default=5); a = ap.parse_args()
+    ap.add_argument("--out", default="figures/supplement"); ap.add_argument("--n-seeds", type=int, default=5); a = ap.parse_args()
     global DF; DF = a.n_seeds - 1
     os.makedirs(a.out, exist_ok=True); tdir = os.path.join(a.out, "tables"); os.makedirs(tdir, exist_ok=True)
     J = lambda n: json.load(open(os.path.join(a.inp, n)))
