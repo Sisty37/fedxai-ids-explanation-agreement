@@ -31,7 +31,7 @@ uns = [[U["D_mixture"]["1"]["per_class_client_EED"][c]["mean"] for c in UC],
 labels = ["Client vs.\nreference", "Local\nbackground", "Retraining\n(seeds)", "Federation\n($\\alpha$=100)", "Heterog.\n($\\alpha$=0.1)"]
 col = {"CICIDS2017": "#0072B2", "UNSW-NB15": "#D55E00"}
 plt.rcParams.update({"font.size": 6.5, "axes.titlesize": 6.8, "axes.labelsize": 6.5, "legend.fontsize": 5.6, "xtick.labelsize": 5.8, "ytick.labelsize": 6, "pdf.fonttype": 42})
-fig, ax = plt.subplots(1, 2, figsize=(4.8, 1.85), gridspec_kw={"width_ratios": [1.55, 1]})
+fig, ax = plt.subplots(1, 2, figsize=(4.8, 1.72), gridspec_kw={"width_ratios": [1.55, 1]})
 rng = np.random.default_rng(0)
 x = np.arange(len(labels)); w = 0.36
 for k, (name, data) in enumerate([("CICIDS2017", cic), ("UNSW-NB15", uns)]):
@@ -73,7 +73,7 @@ plt.rcParams.update({"pdf.fonttype": 42, "font.size": 7.5, "axes.titlesize": 8, 
 OK = ["#0072B2", "#D55E00", "#009E73", "#CC79A7"]; ALPHAS = ["100", "5", "1", "0.5", "0.3", "0.1"]
 an = J("results/analysis/analysis.json"); H = J("results/analysis/fedprox_rq2.json")["H_fedprox"]
 x = np.arange(len(ALPHAS))
-fig, ax = plt.subplots(1, 2, figsize=(4.8, 1.75))
+fig, ax = plt.subplots(1, 2, figsize=(4.8, 1.55))
 c = an["C_detection"]["central"]
 ax[0].axhspan(c["macro_f1"] - c["ci"], c["macro_f1"] + c["ci"], color="0.85", lw=0)
 ax[0].axhline(c["macro_f1"], color="0.4", lw=0.8, ls="--", label="Centralized")
@@ -88,5 +88,5 @@ for i, al in enumerate(["100", "1", "0.1"]):
     e = [tr[al][str(r)]["fidelity_excess_mean_over_classes"] for r in rounds]
     ax[1].errorbar(rounds, [v[0] for v in e], yerr=[v[1] for v in e], marker="os^"[i], color=TRC[i], capsize=1.5, label=f"$\\alpha$={al}")
 ax[1].axhline(0, color="0.5", lw=0.6); ax[1].set_xlabel("Round"); ax[1].set_ylabel("Fidelity excess (EED)")
-ax[1].set_title("(b) Distance to centralized", loc="left"); ax[1].legend(frameon=False, loc="lower left", ncol=3, columnspacing=0.8, handletextpad=0.3); ax[1].set_ylim(-0.12, 0.58)
+ax[1].set_title("(b) Distance to centralized", loc="left"); ax[1].legend(frameon=False, loc="lower left", ncol=3, columnspacing=0.8, handletextpad=0.3); ax[1].set_ylim(-0.24, 0.58)
 fig.tight_layout(w_pad=1.0); fig.savefig("figures/fig1_detection_and_rounds.pdf"); print("wrote figures/fig1_detection_and_rounds.pdf")

@@ -1,21 +1,31 @@
-data/
+# Dataset (top-level data folder only)
+/data/
 *.csv
 *.npz
 *.parquet
 *.zip
+
+# Large training outputs and caches
 results/runs/
+results/cache/
+results/unsw/cache/
 *.pt
+*.pth
+
+# Python / environment
 __pycache__/
 *.pyc
 .pytest_cache/
 venv/
 .venv/
+
+# LaTeX build files
 *.aux
 *.bbl
 *.blg
 *.log
 *.out
 *.synctex.gz
-results/cache/
-results/unsw/cache/
+
+# Private notes
 research_plan_TAIIS2026.md

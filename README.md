@@ -19,6 +19,7 @@ minus a bootstrap noise floor, read against retraining-seed and IID-federated ba
 | `src/fedxai/metrics/agreement.py` | Importance vectors, RBO, noise floor, EED, chance-corrected Jaccard, t-intervals |
 | `scripts/` | One script per experiment (see below) |
 | `tests/` | Unit tests for metrics, data handling and models (`pytest`) |
+| `docs/fig1_methodology.drawio` | Editable source of the methodology diagram (Fig. 1) |
 | `docs/supplement.pdf` | Supplement: EED pseudocode, tables and figures moved from the paper, sensitivity analyses, full UNSW-NB15 results |
 
 Datasets are **not** included (see below).
@@ -33,7 +34,7 @@ pip install shap          # only for the KernelSHAP checks
 pytest -q                 # optional
 ```
 
-All results in the paper were produced on a laptop (RTX 4050, 6 GB; 16 GB RAM).
+All results in the paper were produced on a laptop (RTX 4050, 6 GB; 16 GB RAM) with Python 3.11.9, PyTorch 2.5.1 (CUDA 12.1), NumPy 2.4.6, scikit-learn 1.9.0 and SHAP 0.51.0.
 
 ## Data
 
