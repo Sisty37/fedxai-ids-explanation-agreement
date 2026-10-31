@@ -60,7 +60,7 @@ All results in the paper were produced on a laptop (RTX 4050, 6 GB; 16 GB RAM).
 | 11 | `python scripts/sensitivity.py` | sensitivity: RBO p, background size, explained flows, bootstrap, KernelSHAP per class, cost, per-class F1 |
 | 12 | `python scripts/unsw.py all` | replication on UNSW-NB15 |
 | 13 | `python scripts/make_figures.py`, `python scripts/check_numbers.py` | supplementary figures; checks every number quoted in the paper |
-| 14 | `python scripts/make_fig_sources.py`, `python scripts/make_fig_main2.py` | paper Fig. 2 (CICIDS2017 vs. UNSW-NB15) and Fig. 3 (detection, distance over rounds) |
+| 14 | `python scripts/make_paper_figures.py` | paper Fig. 2 (CICIDS2017 vs. UNSW-NB15) and Fig. 3 (detection, distance over rounds) |
 
 Every training script is resumable (finished runs are skipped). Random seeds: data split
 and reference set use seed 0; training seeds are 0-9 (0-4 for the CNN); partitions use
