@@ -2,12 +2,12 @@
   Fig. 2: CICIDS2017 vs. UNSW-NB15, sources of divergence and drift vs. detection
   Fig. 3: CICIDS2017 detection vs. heterogeneity and distance to centralized over rounds
 Inputs: results/analysis/{analysis,e7_ablations,fedprox_rq2,sensitivity}.json, results/unsw/unsw_analysis.json
-Usage:  python scripts/make_paper_figures.py      Output: figures/fig5_sources_two_datasets.pdf, figures/fig1_detection_and_rounds.pdf
+Usage:  python scripts/make_paper_figures.py      Output: figures/paper/fig2_sources_two_datasets.pdf, figures/paper/fig3_detection_and_rounds.pdf
 """
 import json, os, numpy as np, matplotlib
 matplotlib.use("Agg"); import matplotlib.pyplot as plt
 from scipy import stats
-os.makedirs("figures", exist_ok=True)
+os.makedirs("figures/paper", exist_ok=True)
 J = lambda p: json.load(open(p))
 
 # ---------------- Fig. 2 ----------------
@@ -62,8 +62,8 @@ ax[1].set_title("(b) Drift vs. detection", loc="left")
 ax[1].legend(frameon=False, loc="upper left", fontsize=5.2, handlelength=1.6, labelspacing=0.25)
 for a_ in ax: a_.spines[["top", "right"]].set_visible(False)
 fig.tight_layout(pad=0.3, w_pad=1.0)
-fig.savefig("figures/fig5_sources_two_datasets.pdf"); plt.close(fig)
-print("wrote figures/fig5_sources_two_datasets.pdf")
+fig.savefig("figures/paper/fig2_sources_two_datasets.pdf"); plt.close(fig)
+print("wrote figures/paper/fig2_sources_two_datasets.pdf")
 
 # ---------------- Fig. 3 ----------------
 plt.rcdefaults()
@@ -89,4 +89,4 @@ for i, al in enumerate(["100", "1", "0.1"]):
     ax[1].errorbar(rounds, [v[0] for v in e], yerr=[v[1] for v in e], marker="os^"[i], color=TRC[i], capsize=1.5, label=f"$\\alpha$={al}")
 ax[1].axhline(0, color="0.5", lw=0.6); ax[1].set_xlabel("Round"); ax[1].set_ylabel("Fidelity excess (EED)")
 ax[1].set_title("(b) Distance to centralized", loc="left"); ax[1].legend(frameon=False, loc="lower left", ncol=3, columnspacing=0.8, handletextpad=0.3); ax[1].set_ylim(-0.24, 0.58)
-fig.tight_layout(w_pad=1.0); fig.savefig("figures/fig1_detection_and_rounds.pdf"); print("wrote figures/fig1_detection_and_rounds.pdf")
+fig.tight_layout(w_pad=1.0); fig.savefig("figures/paper/fig3_detection_and_rounds.pdf"); print("wrote figures/paper/fig3_detection_and_rounds.pdf")

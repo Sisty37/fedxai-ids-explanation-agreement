@@ -19,6 +19,8 @@ minus a bootstrap noise floor, read against retraining-seed and IID-federated ba
 | `src/fedxai/metrics/agreement.py` | Importance vectors, RBO, noise floor, EED, chance-corrected Jaccard, t-intervals |
 | `scripts/` | One script per experiment (see below) |
 | `tests/` | Unit tests for metrics, data handling and models (`pytest`) |
+| `figures/paper/` | The three paper figures (Fig. 1 methodology, Fig. 2 CICIDS2017 vs. UNSW-NB15, Fig. 3 detection and rounds) |
+| `figures/supplement/` | Figures and tables used in the supplement |
 | `docs/fig1_methodology.drawio` | Editable source of the methodology diagram (Fig. 1) |
 | `docs/supplement.pdf` | Supplement: EED pseudocode, tables and figures moved from the paper, sensitivity analyses, full UNSW-NB15 results |
 
@@ -60,8 +62,9 @@ All results in the paper were produced on a laptop (RTX 4050, 6 GB; 16 GB RAM) w
 | 10 | `python scripts/cnn_validation.py` | 1D-CNN |
 | 11 | `python scripts/sensitivity.py` | sensitivity: RBO p, background size, explained flows, bootstrap, KernelSHAP per class, cost, per-class F1 |
 | 12 | `python scripts/unsw.py all` | replication on UNSW-NB15 |
-| 13 | `python scripts/make_figures.py`, `python scripts/check_numbers.py` | supplementary figures; checks every number quoted in the paper |
-| 14 | `python scripts/make_paper_figures.py` | paper Fig. 2 (CICIDS2017 vs. UNSW-NB15) and Fig. 3 (detection, distance over rounds) |
+| 13 | `python scripts/make_paper_figures.py` | paper Fig. 2 and Fig. 3 (`figures/paper/`) |
+| 14 | `python scripts/make_figures.py --n-seeds 10` | supplementary figures and tables (`figures/supplement/`) |
+| 15 | `python scripts/check_numbers.py` | checks all 66 numbers quoted in the paper against the result files (PASS/FAIL) |
 
 Every training script is resumable (finished runs are skipped). Random seeds: data split
 and reference set use seed 0; training seeds are 0-9 (0-4 for the CNN); partitions use
