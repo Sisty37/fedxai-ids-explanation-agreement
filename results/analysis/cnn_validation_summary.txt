@@ -1,15 +1,15 @@
-=== 1D-CNN validation (5 seeds) ===
+=== 1D-CNN validation (10 seeds) ===
 Detection macro-F1:
-  central       0.9609 +- 0.0245
-  fedavg_a100   0.8726 +- 0.0650
-  fedavg_a1     0.9282 +- 0.0398
-  fedavg_a0.1   0.5365 +- 0.1185
-  fedprox_a100  0.9179 +- 0.0297
-Seed baseline: Benign:0.530 DoS:0.649 DDoS:0.658 PortSc:0.599 BruteF:0.523 Bot:0.643
-FedAvg a=100 fidelity excess: Benign:0.099 DoS:-0.007 DDoS:-0.065 PortSc:0.108 BruteF:0.006 Bot:0.018
-Heterogeneity drift a=1: mean 0.043 +- 0.056
-Heterogeneity drift a=0.1: mean 0.108 +- 0.029
-Class mix a=1: D_vs_R 0.430, D_vs_mix 0.106, share 0.75
-Class mix a=0.1: D_vs_R 0.429, D_vs_mix 0.086, share 0.80
-Background effect a=1: Benign:0.225 DoS:0.680 DDoS:0.674 PortSc:0.431 BruteF:0.433 Bot:0.710
-FedProx - FedAvg fidelity a=100: Benign:+0.154 DoS:+0.043 DDoS:+0.009 PortSc:+0.010 BruteF:+0.112 Bot:+0.080
+  central       0.9625 +- 0.0166
+  fedavg_a100   0.8543 +- 0.0317
+  fedavg_a1     0.9225 +- 0.0284
+  fedavg_a0.1   0.4979 +- 0.0611
+  fedprox_a100  0.9337 +- 0.0180
+Seed baseline: Benign:0.548 DoS:0.626 DDoS:0.637 PortSc:0.618 BruteF:0.543 Bot:0.673
+FedAvg a=100 fidelity excess: Benign:0.099 DoS:0.029 DDoS:-0.033 PortSc:0.090 BruteF:0.036 Bot:0.009
+Heterogeneity drift a=1: mean 0.038 +- 0.019
+Heterogeneity drift a=0.1: mean 0.105 +- 0.038
+Class mix a=1: D_vs_R 0.455, D_vs_mix 0.086, share 0.81
+Class mix a=0.1: D_vs_R 0.377, D_vs_mix 0.082, share 0.78
+Background effect a=1: Benign:0.226 DoS:0.661 DDoS:0.656 PortSc:0.470 BruteF:0.420 Bot:0.696
+FedProx - FedAvg fidelity a=100: Benign:+0.108 DoS:+0.045 DDoS:-0.007 PortSc:+0.017 BruteF:+0.097 Bot:+0.042

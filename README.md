@@ -1,4 +1,4 @@
-# Measuring Explanation Agreement in Federated Intrusion Detection
+﻿# Measuring Explanation Agreement in Federated Intrusion Detection
 
 Code for the TAIIS 2026 paper *"Measuring Explanation Agreement in Federated Intrusion
 Detection: A Noise-Aware Evaluation Protocol"* (A. J. Sisty, N. Roy, A. Bhowmik,
@@ -21,8 +21,7 @@ minus a bootstrap noise floor, read against retraining-seed and IID-federated ba
 | `tests/` | Unit tests for metrics, data handling and models (`pytest`) |
 | `figures/paper/` | The three paper figures (Fig. 1 methodology, Fig. 2 CICIDS2017 vs. UNSW-NB15, Fig. 3 detection and rounds) |
 | `figures/supplement/` | Figures and tables used in the supplement |
-| `docs/fig1_methodology.drawio` | Editable source of the methodology diagram (Fig. 1) |
-| `docs/supplement.pdf` | Supplement: EED pseudocode, tables and figures moved from the paper, sensitivity analyses, full UNSW-NB15 results |
+| `docs/supplement.pdf` | Supplement: EED pseudocode, tables and figures moved from the paper, sensitivity analyses, 1D-CNN (ten seeds), privacy leakage, full UNSW-NB15 results |
 
 Datasets are **not** included (see below).
 
@@ -55,16 +54,17 @@ All results in the paper were produced on a laptop (RTX 4050, 6 GB; 16 GB RAM) w
 | 3 | `python scripts/train_all.py` and `python scripts/train_all.py --fedprox` | centralized, FedAvg, FedProx models |
 | 4 | `python scripts/train_local.py` | local-only models (factorized analysis) |
 | 5 | `python scripts/analyze_main.py` | seed baseline, fidelity, detection, class mix, trajectories |
-| 6 | `python scripts/analyze_extra.py` | heterogeneity drift, factorized analysis (Table 2) |
-| 7 | `python scripts/analyze_fedprox_rq2.py` | FedProx vs FedAvg (Table 3), run-level coupling |
+| 6 | `python scripts/analyze_extra.py` | heterogeneity drift, factorized analysis (supplement) |
+| 7 | `python scripts/analyze_fedprox_rq2.py` | FedProx vs FedAvg, run-level coupling |
 | 8 | `python scripts/e7_ablations.py`, `python scripts/e7_dstport.py` | Jaccard, background, KernelSHAP, destination port |
-| 9 | `python scripts/prepare_2018.py`, `analyze_e6.py`, `sanity_e6.py`, `e6_mechanism.py` | cross-dataset shift (Fig. 4) |
-| 10 | `python scripts/cnn_validation.py` | 1D-CNN |
+| 9 | `python scripts/prepare_2018.py`, `analyze_e6.py`, `sanity_e6.py`, `e6_mechanism.py` | cross-dataset shift (Sect. 5.5) |
+| 10 | `python scripts/cnn_validation.py` (seeds 0-9 by default) | 1D-CNN replication, ten seeds (Table 2) |
 | 11 | `python scripts/sensitivity.py` | sensitivity: RBO p, background size, explained flows, bootstrap, KernelSHAP per class, cost, per-class F1 |
 | 12 | `python scripts/unsw.py all` | replication on UNSW-NB15 |
-| 13 | `python scripts/make_paper_figures.py` | paper Fig. 2 and Fig. 3 (`figures/paper/`) |
-| 14 | `python scripts/make_figures.py --n-seeds 10` | supplementary figures and tables (`figures/supplement/`) |
-| 15 | `python scripts/check_numbers.py` | checks all 66 numbers quoted in the paper against the result files (PASS/FAIL) |
+| 13 | `python scripts/privacy_leakage.py` | class-share inference from shared importance vectors, Gaussian-noise defense (Sect. 6) |
+| 14 | `python scripts/make_paper_figures.py` | paper Fig. 2 and Fig. 3 (`figures/paper/`) |
+| 15 | `python scripts/make_figures.py --n-seeds 10` | supplementary figures and tables (`figures/supplement/`) |
+| 16 | `python scripts/check_numbers.py` | checks the numbers quoted in the paper against the result files (PASS/FAIL) |
 
 Every training script is resumable (finished runs are skipped). Random seeds: data split
 and reference set use seed 0; training seeds are 0-9 (0-4 for the CNN); partitions use

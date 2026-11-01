@@ -1,14 +1,14 @@
 """Second-architecture validation (1D-CNN), compact design from the review checklist.
 
 Train (resumable):  centralized, FedAvg alpha in {100, 1, 0.1}, FedProx (mu=0.01) alpha=100,
-                    5 seeds -> 25 runs, 50 rounds/epochs each (~6-8 h on RTX 4050).
+                    5 runs per seed, 50 rounds/epochs each (~1.3 h per seed on RTX 4050); camera-ready: 10 seeds.
 Analyse:            the paper's main findings re-measured for the CNN:
                     detection, seed baseline, FedAvg-vs-central fidelity (alpha=100),
                     heterogeneity drift (alpha=1, 0.1 vs 100), class-mix effect,
                     SHAP-background effect (alpha=1), FedProx-minus-FedAvg fidelity (alpha=100).
 
 Usage:  python scripts/cnn_validation.py --dry-run
-        python scripts/cnn_validation.py            # train missing runs, then analyse
+        python scripts/cnn_validation.py --seeds 0 1 2 3 4 5 6 7 8 9   # train missing runs, then analyse
         python scripts/cnn_validation.py --analyze  # analysis only
 Output: results/runs/cnn_*/ , results/analysis/cnn_validation.json + cnn_validation_summary.txt
 """
@@ -104,12 +104,24 @@ def analyse(cfg, seeds, X, y, idx, dev):
     base = {c: np.mean([pe(cen(i), cen(j), c) for i, j in itertools.combinations(seeds, 2)]) for c in cls}
     res["seed_baseline"] = {CLASSES[c]: float(base[c]) for c in cls}
     fid = lambda n, s, c: np.mean([pe(n, cen(s2), c) for s2 in seeds if s2 != s]) - base[c]
-    res["fidelity_fedavg_a100"] = {CLASSES[c]: t_ci([fid(fa("100", s), s, c) for s in seeds]) for c in cls}
-    res["fedprox_minus_fedavg_a100"] = {CLASSES[c]: t_ci([fid(name("fedprox", "100", 0.01, s), s, c) - fid(fa("100", s), s, c) for s in seeds]) for c in cls}
+    fv = {c: [fid(fa("100", s), s, c) for s in seeds] for c in cls}
+    pv = {c: [fid(name("fedprox", "100", 0.01, s), s, c) - fid(fa("100", s), s, c) for s in seeds] for c in cls}
+    res["fidelity_fedavg_a100"] = {CLASSES[c]: t_ci(fv[c]) for c in cls}
+    res["fedprox_minus_fedavg_a100"] = {CLASSES[c]: t_ci(pv[c]) for c in cls}
+    from scipy import stats as _st
+    def _holm(p):
+        p = np.asarray(p, float); o = np.argsort(p); m = len(p); adj = np.empty(m); run = 0.0
+        for r, i in enumerate(o):
+            run = max(run, min(1.0, (m - r) * p[i])); adj[i] = run
+        return adj.tolist()
+    _p = lambda v: float(_st.ttest_1samp(v, 0).pvalue)
+    res["holm_p"] = {"fidelity_fedavg_a100": dict(zip(CN, _holm([_p(fv[c]) for c in cls]))),
+                     "fedprox_minus_fedavg_a100": dict(zip(CN, _holm([_p(pv[c]) for c in cls])))}
     b100 = {c: np.mean([pe(fa("100", i), fa("100", j), c) for i, j in itertools.combinations(seeds, 2)]) for c in cls}
     res["heterogeneity_drift"] = {}
     for a in ["1", "0.1"]:
         per = {c: [np.mean([pe(fa(a, s), fa("100", s2), c) for s2 in seeds if s2 != s]) - b100[c] for s in seeds] for c in cls}
+        res["holm_p"][f"drift_a{a}"] = dict(zip(CN, _holm([_p(per[c]) for c in cls])))
         res["heterogeneity_drift"][a] = {"per_class": {CLASSES[c]: t_ci(v) for c, v in per.items()},
                                          "mean_over_classes": t_ci([np.mean([per[c][i] for c in cls]) for i in range(len(seeds))])}
     print("fidelity/heterogeneity done", flush=True)
@@ -163,7 +175,7 @@ def analyse(cfg, seeds, X, y, idx, dev):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--dry-run", action="store_true"); ap.add_argument("--analyze", action="store_true")
-    ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2, 3, 4]); a = ap.parse_args()
+    ap.add_argument("--seeds", type=int, nargs="+", default=list(range(10))); a = ap.parse_args()
     cfg = yaml.safe_load(open("configs/protocol.yaml"))
     todo = [name(*r) for r in runs(a.seeds) if not os.path.exists(os.path.join(rdir(name(*r)), "metrics.json"))]
     print(f"{len(runs(a.seeds))} CNN runs planned, {len(todo)} to train")

@@ -1,0 +1,47 @@
+Class-share inference from a shared overall importance vector (TV error; lower = more leakage)
+
+=== cicids2017 ===
+alpha=100  prior-only TV 0.023 | class-cond. presence revealed in 33% of cells
+   noise 0.00/F: TV est 0.053+-0.005 | presence AUC 0.921 | utility loss D 0.000
+   noise 0.05/F: TV est 0.057+-0.005 | presence AUC 0.906 | utility loss D 0.021
+   noise 0.10/F: TV est 0.067+-0.005 | presence AUC 0.882 | utility loss D 0.039
+   noise 0.25/F: TV est 0.120+-0.010 | presence AUC 0.776 | utility loss D 0.101
+   noise 0.50/F: TV est 0.155+-0.014 | presence AUC 0.724 | utility loss D 0.184
+   noise 1.00/F: TV est 0.256+-0.022 | presence AUC 0.675 | utility loss D 0.357
+alpha=1    prior-only TV 0.205 | class-cond. presence revealed in 30% of cells
+   noise 0.00/F: TV est 0.059+-0.007 | presence AUC 0.869 | utility loss D 0.000
+   noise 0.05/F: TV est 0.061+-0.008 | presence AUC 0.864 | utility loss D 0.021
+   noise 0.10/F: TV est 0.066+-0.008 | presence AUC 0.843 | utility loss D 0.041
+   noise 0.25/F: TV est 0.106+-0.012 | presence AUC 0.799 | utility loss D 0.104
+   noise 0.50/F: TV est 0.173+-0.019 | presence AUC 0.755 | utility loss D 0.201
+   noise 1.00/F: TV est 0.305+-0.033 | presence AUC 0.704 | utility loss D 0.375
+alpha=0.1  prior-only TV 0.551 | class-cond. presence revealed in 23% of cells
+   noise 0.00/F: TV est 0.037+-0.009 | presence AUC 0.912 | utility loss D 0.000
+   noise 0.05/F: TV est 0.038+-0.009 | presence AUC 0.907 | utility loss D 0.028
+   noise 0.10/F: TV est 0.044+-0.010 | presence AUC 0.897 | utility loss D 0.050
+   noise 0.25/F: TV est 0.074+-0.013 | presence AUC 0.882 | utility loss D 0.115
+   noise 0.50/F: TV est 0.142+-0.023 | presence AUC 0.826 | utility loss D 0.203
+   noise 1.00/F: TV est 0.240+-0.032 | presence AUC 0.803 | utility loss D 0.352
+
+=== unsw_nb15 ===
+alpha=100  prior-only TV 0.046 | class-cond. presence revealed in 35% of cells
+   noise 0.00/F: TV est 0.183+-0.013 | presence AUC 0.796 | utility loss D 0.000
+   noise 0.05/F: TV est 0.192+-0.013 | presence AUC 0.782 | utility loss D 0.019
+   noise 0.10/F: TV est 0.199+-0.015 | presence AUC 0.754 | utility loss D 0.035
+   noise 0.25/F: TV est 0.228+-0.015 | presence AUC 0.714 | utility loss D 0.080
+   noise 0.50/F: TV est 0.295+-0.017 | presence AUC 0.627 | utility loss D 0.150
+   noise 1.00/F: TV est 0.387+-0.021 | presence AUC 0.639 | utility loss D 0.271
+alpha=1    prior-only TV 0.294 | class-cond. presence revealed in 34% of cells
+   noise 0.00/F: TV est 0.092+-0.008 | presence AUC 0.903 | utility loss D 0.000
+   noise 0.05/F: TV est 0.097+-0.009 | presence AUC 0.903 | utility loss D 0.021
+   noise 0.10/F: TV est 0.111+-0.010 | presence AUC 0.892 | utility loss D 0.039
+   noise 0.25/F: TV est 0.158+-0.013 | presence AUC 0.823 | utility loss D 0.093
+   noise 0.50/F: TV est 0.239+-0.025 | presence AUC 0.755 | utility loss D 0.175
+   noise 1.00/F: TV est 0.319+-0.029 | presence AUC 0.698 | utility loss D 0.316
+alpha=0.1  prior-only TV 0.634 | class-cond. presence revealed in 22% of cells
+   noise 0.00/F: TV est 0.144+-0.019 | presence AUC 0.82 | utility loss D 0.000
+   noise 0.05/F: TV est 0.147+-0.018 | presence AUC 0.821 | utility loss D 0.020
+   noise 0.10/F: TV est 0.158+-0.020 | presence AUC 0.796 | utility loss D 0.041
+   noise 0.25/F: TV est 0.195+-0.023 | presence AUC 0.773 | utility loss D 0.088
+   noise 0.50/F: TV est 0.272+-0.033 | presence AUC 0.754 | utility loss D 0.162
+   noise 1.00/F: TV est 0.385+-0.048 | presence AUC 0.686 | utility loss D 0.277
