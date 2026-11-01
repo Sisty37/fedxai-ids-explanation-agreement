@@ -1,4 +1,4 @@
-﻿# Measuring Explanation Agreement in Federated Intrusion Detection
+# Measuring Explanation Agreement in Federated Intrusion Detection
 
 Code for the TAIIS 2026 paper *"Measuring Explanation Agreement in Federated Intrusion
 Detection: A Noise-Aware Evaluation Protocol"* (A. J. Sisty, N. Roy, A. Bhowmik,
@@ -58,7 +58,7 @@ All results in the paper were produced on a laptop (RTX 4050, 6 GB; 16 GB RAM) w
 | 7 | `python scripts/analyze_fedprox_rq2.py` | FedProx vs FedAvg, run-level coupling |
 | 8 | `python scripts/e7_ablations.py`, `python scripts/e7_dstport.py` | Jaccard, background, KernelSHAP, destination port |
 | 9 | `python scripts/prepare_2018.py`, `analyze_e6.py`, `sanity_e6.py`, `e6_mechanism.py` | cross-dataset shift (Sect. 5.5) |
-| 10 | `python scripts/cnn_validation.py` (seeds 0-9 by default) | 1D-CNN replication, ten seeds (Table 2) |
+| 10 | `python scripts/cnn_validation.py` (seeds 0-9 by default) | 1D-CNN replication, ten seeds (Table 3) |
 | 11 | `python scripts/sensitivity.py` | sensitivity: RBO p, background size, explained flows, bootstrap, KernelSHAP per class, cost, per-class F1 |
 | 12 | `python scripts/unsw.py all` | replication on UNSW-NB15 |
 | 13 | `python scripts/privacy_leakage.py` | class-share inference from shared importance vectors, Gaussian-noise defense (Sect. 6) |

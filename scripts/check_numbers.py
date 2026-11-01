@@ -47,13 +47,13 @@ if lku:
         [257673, 94928, 11506, 151239, 64], [lku["rows_raw"], lku["rows_removed_duplicates"], lku["rows_removed_label_conflicts"], lku["rows_final"], lku["n_features"]], 0)
     chk("Sect. 4", "UNSW Worms reference flows", [16], [lku["R_class_counts"]["Worms"]], 0)
 
-print("=== Table 1 ===")
+print("=== Table 2 ===")
 s7 = se["S7_per_class"]; C7 = ["Benign", "DoS", "DDoS", "PortScan", "BruteForce", "WebAttack", "Bot"]
-chk("Table 1", "test flows", [284763, 34327, 19029, 334, 1387, 20, 147], [s7["test_support"][c] for c in C7], 0)
-chk("Table 1", "R flows", [200, 200, 200, 167, 200, 11, 74], [s7["R_counts"][c] for c in C7], 0)
+chk("Table 2", "test flows", [284763, 34327, 19029, 334, 1387, 20, 147], [s7["test_support"][c] for c in C7], 0)
+chk("Table 2", "R flows", [200, 200, 200, 167, 200, 11, 74], [s7["R_counts"][c] for c in C7], 0)
 for key, row in [("central", [1.000, 1.000, 1.000, 0.963, 0.996, 0.821, 0.983]), ("fedavg_a100", [1.000, 0.999, 1.000, 0.973, 0.992, 0.607, 0.959]),
                  ("fedavg_a0.1", [0.975, 0.709, 0.833, 0.454, 0.790, 0.314, 0.463])]:
-    chk("Table 1", f"F1 {key}", row, [s7[key]["per_class_f1"][c][0] for c in C7], 3)
+    chk("Table 2", f"F1 {key}", row, [s7[key]["per_class_f1"][c][0] for c in C7], 3)
 
 print("=== Results (CICIDS2017) ===")
 D = an["D_mixture"]
@@ -119,25 +119,25 @@ chk("5.6", "floor with 10--20 flows 0.10--0.21", [0.10, 0.21], mm([S3[c][n]["flo
 chk("5.6", "seed-pair EED SD up to 0.11 (10--20 flows)", [0.11], [max(S3[c][n]["eed_sd"] for c in CL for n in ["10", "20"])], 2)
 chk("5.6", "two shared backgrounds: EED up to 0.26 (DDoS)", [0.26], [S2["same_model_two_shared_backgrounds_EED"]["m100_drawB"]["DDoS"][0]], 2)
 
-print("=== Replication (Table 2, Sect. 5.7) ===")
-chk("Table 2", "CNN macro-F1 central / a=0.1 (10 seeds)", [0.963, 0.498], [cnn["detection"]["central"][0], cnn["detection"]["fedavg_a0.1"][0]], 3)
-chk("Table 2", "UNSW macro-F1 central / a=0.1", [0.617, 0.328], [un["C_detection"]["central"]["macro_f1"][0], un["C_detection"]["fedavg_a0.1"]["macro_f1"][0]], 3)
-chk("Table 2", "CNN attack-mix share 78--81%", [78, 81], mm([d["share_explained_by_mix"] * 100 for d in cnn["class_mix"].values()]), 0)
-chk("Table 2", "UNSW attack-mix share 69--83%", [69, 83], mm([d["share_explained_by_mix"] * 100 for d in un["D_mixture"].values()]), 0)
-chk("Table 2", "CICIDS federation excess 0.18--0.33", [0.18, 0.33], mm([v["excess_over_seed_baseline"] for v in B100.values()]), 2)
+print("=== Replication (Table 3, Sect. 5.7) ===")
+chk("Table 3", "CNN macro-F1 central / a=0.1 (10 seeds)", [0.963, 0.498], [cnn["detection"]["central"][0], cnn["detection"]["fedavg_a0.1"][0]], 3)
+chk("Table 3", "UNSW macro-F1 central / a=0.1", [0.617, 0.328], [un["C_detection"]["central"]["macro_f1"][0], un["C_detection"]["fedavg_a0.1"]["macro_f1"][0]], 3)
+chk("Table 3", "CNN attack-mix share 78--81%", [78, 81], mm([d["share_explained_by_mix"] * 100 for d in cnn["class_mix"].values()]), 0)
+chk("Table 3", "UNSW attack-mix share 69--83%", [69, 83], mm([d["share_explained_by_mix"] * 100 for d in un["D_mixture"].values()]), 0)
+chk("Table 3", "CICIDS federation excess 0.18--0.33", [0.18, 0.33], mm([v["excess_over_seed_baseline"] for v in B100.values()]), 2)
 cf = cnn["fidelity_fedavg_a100"]
-chk("Table 2", "CNN federation excess 0.09--0.10 (Benign, PortScan)", [0.10, 0.09], [cf["Benign"][0], cf["PortScan"][0]], 2)
+chk("Table 3", "CNN federation excess 0.09--0.10 (Benign, PortScan)", [0.10, 0.09], [cf["Benign"][0], cf["PortScan"][0]], 2)
 chp = cnn["holm_p"]
-chk("Table 2", "CNN federation excess significant 2/6 (Benign, PortScan)", [2, 1], [sum(v < .05 for v in chp["fidelity_fedavg_a100"].values()), chp["fidelity_fedavg_a100"]["Benign"] < .05 and chp["fidelity_fedavg_a100"]["PortScan"] < .05], 0)
+chk("Table 3", "CNN federation excess significant 2/6 (Benign, PortScan)", [2, 1], [sum(v < .05 for v in chp["fidelity_fedavg_a100"].values()), chp["fidelity_fedavg_a100"]["Benign"] < .05 and chp["fidelity_fedavg_a100"]["PortScan"] < .05], 0)
 uf = un["B_fidelity_excess"]["100"]["per_class"]
-chk("Table 2", "UNSW federation excess 0.04--0.25, 9/9 significant", [0.04, 0.25, 9], mm([v["ci"][0] for v in uf.values()]) + [sum(v["holm_p"] < .05 for v in uf.values())], 2)
-chk("Table 2", "within-alpha rho CICIDS 0.23, UNSW 0.52", [0.23, 0.52], [I["within_alpha_spearman"]["rho"], un["F_drift"]["coupling"]["spearman_within_alpha"]], 2)
-chk("Table 2", "FedProx dF1: CICIDS +0.15, CNN +0.08, UNSW +0.00", [0.15, 0.08, 0.00],
+chk("Table 3", "UNSW federation excess 0.04--0.25, 9/9 significant", [0.04, 0.25, 9], mm([v["ci"][0] for v in uf.values()]) + [sum(v["holm_p"] < .05 for v in uf.values())], 2)
+chk("Table 3", "within-alpha rho CICIDS 0.23, UNSW 0.52", [0.23, 0.52], [I["within_alpha_spearman"]["rho"], un["F_drift"]["coupling"]["spearman_within_alpha"]], 2)
+chk("Table 3", "FedProx dF1: CICIDS +0.15, CNN +0.08, UNSW +0.00", [0.15, 0.08, 0.00],
     [H["detection"]["0.1"]["paired_diff"][0], cnn["detection"]["fedprox_a100"][0] - cnn["detection"]["fedavg_a100"][0], un["H_fedprox"]["0.1"]["delta_macro_f1"][0]], 2)
 uh = un["H_fedprox"]["0.1"]["per_class"]
-chk("Table 2", "UNSW FedProx: 3/9 farther, none closer (a=0.1)", [3, 0], [sum(v["holm_p"] < .05 and v["ci"][0] > 0 for v in uh.values()), sum(v["holm_p"] < .05 and v["ci"][0] < 0 for v in uh.values())], 0)
+chk("Table 3", "UNSW FedProx: 3/9 farther, none closer (a=0.1)", [3, 0], [sum(v["holm_p"] < .05 and v["ci"][0] > 0 for v in uh.values()), sum(v["holm_p"] < .05 and v["ci"][0] < 0 for v in uh.values())], 0)
 cpx = cnn["fedprox_minus_fedavg_a100"]
-chk("Table 2", "CNN FedProx: 2/6 farther, none closer (a=100)", [2, 0], [sum(chp["fedprox_minus_fedavg_a100"][k] < .05 and cpx[k][0] > 0 for k in cpx), sum(chp["fedprox_minus_fedavg_a100"][k] < .05 and cpx[k][0] < 0 for k in cpx)], 0)
+chk("Table 3", "CNN FedProx: 2/6 farther, none closer (a=100)", [2, 0], [sum(chp["fedprox_minus_fedavg_a100"][k] < .05 and cpx[k][0] > 0 for k in cpx), sum(chp["fedprox_minus_fedavg_a100"][k] < .05 and cpx[k][0] < 0 for k in cpx)], 0)
 chk("5.7", "CNN seed baseline 0.54--0.67", [0.54, 0.67], mm(list(cnn["seed_baseline"].values())), 2)
 chk("5.7", "CNN local background (attacks) 0.42--0.70", [0.42, 0.70], mm([v[0] for k, v in cnn["background_effect_a1"].items() if k != "Benign"]), 2)
 chk("5.7", "CNN drift a=0.1 0.11 +- 0.04", [0.11, 0.04], cnn["heterogeneity_drift"]["0.1"]["mean_over_classes"], 2)
